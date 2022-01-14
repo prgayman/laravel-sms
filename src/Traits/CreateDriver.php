@@ -4,6 +4,7 @@ namespace Prgayman\Sms\Traits;
 
 use Prgayman\Sms\Drivers\LogDriver;
 use Illuminate\Log\LogManager;
+use Prgayman\Sms\Drivers\ArrayDriver;
 use Psr\Log\LoggerInterface;
 
 trait CreateDriver
@@ -23,5 +24,15 @@ trait CreateDriver
         }
 
         return new LogDriver($logger);
+    }
+
+    /**
+     * Create an instance of the Array Driver.
+     *
+     * @return \Prgayman\Sms\Drivers\ArrayDriver
+     */
+    protected function createArrayDriver()
+    {
+        return new ArrayDriver;
     }
 }

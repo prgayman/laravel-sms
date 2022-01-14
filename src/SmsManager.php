@@ -29,9 +29,7 @@ class SmsManager
      *
      * @var array
      */
-    protected $supportedDrivers = [
-        "log"
-    ];
+    protected $supportedDrivers = ["log", "array"];
 
     /**
      * Create a new Sms manager instance.
