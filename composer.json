@@ -1,0 +1,47 @@
+{
+  "name": "prgayman/laravel-sms",
+  "description": "Laravel package for sending SMS",
+  "keywords": [
+    "prgayman",
+    "laravel",
+    "sms"
+  ],
+  "homepage": "https://github.com/prgayman/laravel-sms",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ayman Alaiwah",
+      "email": "aymanalaiwah.dev@gmail.com",
+      "homepage": "https://github.com/prgayman/",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/prgayman/laravel-sms/issues",
+    "source": "https://github.com/prgayman/laravel-sms"
+  },
+  "require": {
+    "php": ">=7.2|^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Prgayman\\Sms\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Prgayman\\Sms\\SmsServiceProvider"
+      ],
+      "aliases": {
+        "Sms": "Prgayman\\Sms\\Facades\\Sms"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
