@@ -27,7 +27,7 @@ return [
     | sending an sms. You will specify which one you are using for your
     | drivers below. You are free to add additional drivers as required.
     |
-    | Supported: 
+    | Supported: log
     |
     */
     "drivers" => [
