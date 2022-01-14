@@ -16,7 +16,7 @@ class LogDriver extends Driver
     protected $logger;
 
     /**
-     * Create a new log transport instance.
+     * Create a new log driver instance.
      *
      * @param  \Psr\Log\LoggerInterface  $logger
      * @return void

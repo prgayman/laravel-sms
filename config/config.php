@@ -27,14 +27,23 @@ return [
     | sending an sms. You will specify which one you are using for your
     | drivers below. You are free to add additional drivers as required.
     |
-    | Supported: log,array
+    | Supported: log,array,jawal_sms
     |
     */
     "drivers" => [
+
+        "jawal_sms" => [
+            "driver" => "jawal_sms",
+            'username' => env('SMS_JAWAL_SMS_USERNAME'),
+            'password' => env('SMS_JAWAL_SMS_PASSWORD'),
+            'sender'   => env('SMS_JAWAL_SMS_SENDER'),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),
         ],
+
         'array' => [
             'driver' => 'array',
         ],

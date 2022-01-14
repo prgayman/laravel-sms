@@ -29,7 +29,7 @@ class SmsManager
      *
      * @var array
      */
-    protected $supportedDrivers = ["log", "array"];
+    protected $supportedDrivers = ["log", "array", "jawal_sms"];
 
     /**
      * Create a new Sms manager instance.
