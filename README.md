@@ -77,6 +77,10 @@ You can publish the config file with this artisan command:
 |log|-|All|Yes|Yes
 |JawalSms|http://www.jawalsms.net/|SA|Yes|No
 
+---
+**NOTE**
+Please check your service provider's settings before use , config file ```config/sms.php```  
+---
 
 ## Exceptions
 - ```Prgayman\Sms\Exceptions\ClientException```
@@ -122,3 +126,38 @@ Prgayman\Sms\Facades\Sms::setDefaultDriver("array");
 - Run migrate with this artisan command:
 
       $ php artisan migrate
+
+### Send Message
+
+You can simply send a message like this:
+
+```php
+
+# Send message using facade
+use Prgayman\Sms\Facades\Sms;
+
+$to = "+962790000000";
+$from = "SenderName";
+$message = "Test Send Message";
+
+/**
+ * Send using default driver sms
+ * 
+ * @return mixed depends on driver
+ */
+$response = Sms::to($to)->from($from)->message($message)->send(); 
+
+```
+Send using select driver sms
+```php
+Sms::driver("array")->to($to)->from($from)->message($message)->send();
+```
+
+Send using helper function with default driver
+```php
+sms()->to($to)->from($from)->message($message)->send();
+```
+Send using helper function and select driver
+```php
+sms("array")->to($to)->from($from)->message($message)->send();
+```
