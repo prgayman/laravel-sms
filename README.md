@@ -71,18 +71,12 @@ You can publish the config file with this artisan command:
     $ php artisan vendor:publish --tag=laravel-sms-config
 
 ## Available SMS Providers
-|Provider|URL|Supported countries|Tested|For Testing
+|Provider|URL|Supported countries|Tested|Local Development
 |:--------- | :-----------------: | :------: | :------: | :------: |
 |array|-|All|Yes|Yes
 |log|-|All|Yes|Yes
 |JawalSms|http://www.jawalsms.net/|SA|Yes|No
 
----
-**NOTE**
-
-Please check your service provider's settings before use , config file ```config/sms.php```  
-
----
 
 ## Exceptions
 - ```Prgayman\Sms\Exceptions\ClientException```
@@ -163,3 +157,21 @@ Send using helper function and select driver
 ```php
 sms("array")->to($to)->from($from)->message($message)->send();
 ```
+
+## Drivers configuration
+
+### Log
+|Key|Mandatory|Default Value|Description
+|:------------------ | :---------- |  :------ | :------------- |
+|SMS_LOG_CHANNEL|No|null| Log channel name if null using default log channel
+
+### JawalSms
+|Key|Mandatory|Default Value|Description
+|:------------------ | :---------- |  :------ | :------------- |
+|SMS_JAWAL_SMS_USERNAME|Yes|null| Account username
+|SMS_JAWAL_SMS_PASSWORD|Yes|null| Account password
+|SMS_JAWAL_SMS_SENDER|No|null| Sender Name (optional) you can set sender name using function ```from()```
+
+## Licence
+
+This library is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
