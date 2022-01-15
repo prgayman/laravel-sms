@@ -79,7 +79,9 @@ You can publish the config file with this artisan command:
 
 ---
 **NOTE**
+
 Please check your service provider's settings before use , config file ```config/sms.php```  
+
 ---
 
 ## Exceptions
