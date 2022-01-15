@@ -3,8 +3,10 @@
 namespace Prgayman\Sms;
 
 use Exception;
+use Illuminate\Support\Str;
 use Prgayman\Sms\Contracts\DriverInterface;
 use Prgayman\Sms\Exceptions\DriverException;
+use Prgayman\Sms\Models\SmsHistory;
 
 class SmsDriver implements DriverInterface
 {
@@ -109,9 +111,25 @@ class SmsDriver implements DriverInterface
     {
         try {
             $response = $this->driver->send();
+            $this->addHistory(SmsHistory::SUCCESSED);
             return $response;
         } catch (Exception $e) {
+            $this->addHistory(SmsHistory::FAILED);
             throw new DriverException($e->getMessage());
+        }
+    }
+
+    protected function addHistory($status)
+    {
+        if (SmsConfig::historyEnabled() && in_array($status, SmsConfig::historyStatuses())) {
+            app(SmsHistory::class)::create([
+                "id"          => Str::uuid()->toString(),
+                "driver"      => $this->config['driver'],
+                "driver_name" => $this->name,
+                "message"     => $this->getMessage(),
+                "from"        => $this->getFrom(),
+                "to"          => $this->getTo()
+            ]);
         }
     }
 

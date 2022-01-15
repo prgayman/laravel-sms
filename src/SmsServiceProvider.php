@@ -3,6 +3,7 @@
 namespace Prgayman\Sms;
 
 use Illuminate\Support\ServiceProvider;
+use Prgayman\Sms\Models\SmsHistory;
 
 class SmsServiceProvider extends ServiceProvider
 {
@@ -11,10 +12,21 @@ class SmsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        # Load migration from database directory
+        $this->loadMigrationsFrom([
+            __DIR__ . '/../database'
+        ]);
+
         # publishes config file with group (laravel-sms-config)
         $this->publishes([
             __DIR__ . '/../config/config.php' => config_path('sms.php'),
         ], 'laravel-sms-config');
+
+
+        # publishes migrations with group (laravel-sms-migrations)
+        $this->publishes([
+            __DIR__ . '/../database/' => database_path('migrations'),
+        ], 'laravel-sms-migrations');
     }
 
     /**
@@ -29,6 +41,9 @@ class SmsServiceProvider extends ServiceProvider
         );
 
         $this->registerDriver();
+
+        # Bind models
+        $this->bindModels();
     }
 
 
@@ -46,5 +61,15 @@ class SmsServiceProvider extends ServiceProvider
         $this->app->bind('sms', function ($app) {
             return $app->make('sms.manager')->driver();
         });
+    }
+
+    /**
+     * Bind laravel-sms models
+     * 
+     * @return void
+     */
+    private function bindModels(): void
+    {
+        $this->app->bind(SmsHistory::class, config('sms.sms_histories.model'));
     }
 }

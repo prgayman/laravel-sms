@@ -47,5 +47,31 @@ return [
         'array' => [
             'driver' => 'array',
         ],
-    ]
+    ],
+
+    /**
+     * History configuration
+     */
+    "history" => [
+
+        /** @var bool */
+        'enabled' => env('SMS_HISTORY_ENABLED', true),
+
+        /** 
+         * Enable history for this statuses
+         * @var array
+         */
+        "statuses" => [
+            \Prgayman\Sms\Models\SmsHistory::SUCCESSED,
+            \Prgayman\Sms\Models\SmsHistory::FAILED,
+        ]
+    ],
+
+    /**
+     * Base model 'sms_histories'.
+     */
+    'sms_histories' => [
+        'table' => 'sms_histories',
+        'model' => \Prgayman\Sms\Models\SmsHistory::class,
+    ],
 ];
