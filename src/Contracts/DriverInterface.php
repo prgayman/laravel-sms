@@ -51,7 +51,9 @@ interface DriverInterface
 
     /**
      * Send Message
+     * 
      * @throws Prgayman\Sms\Exceptions\DriverException
+     * @return mixed
      */
     public function send();
 }

@@ -37,8 +37,13 @@ class JawalSmsDriver extends Driver
         $this->client = new JawalSmsClient($username, $password);
     }
 
+    /** 
+     * 
+     * @throws \Prgayman\Sms\Exceptions\ClientException
+     * @return \Illuminate\Http\Client\Response 
+     */
     public function send()
     {
-        $this->client->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
+        return $this->client->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
     }
 }

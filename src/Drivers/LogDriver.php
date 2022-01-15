@@ -34,9 +34,10 @@ class LogDriver extends Driver
         return $this->logger;
     }
 
+    /** @return void */
     public function send()
     {
-        $this->logger->debug($this->getEntityString());
+        return $this->logger->debug($this->getEntityString());
     }
 
     /**
@@ -45,6 +46,6 @@ class LogDriver extends Driver
      */
     protected function getEntityString()
     {
-        return (string) __CLASS__ . PHP_EOL . "[FROM]: {$this->getFrom()}" . PHP_EOL . "[TO]: {$this->getTo()}" . PHP_EOL . "[MESSAGE]: {$this->getMessage()}";
+        return (string) __CLASS__ . PHP_EOL . "[From]: {$this->getFrom()}" . PHP_EOL . "[To]: {$this->getTo()}" . PHP_EOL . "[Message]: {$this->getMessage()}";
     }
 }

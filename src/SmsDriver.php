@@ -3,7 +3,6 @@
 namespace Prgayman\Sms;
 
 use Exception;
-use Illuminate\Support\Facades\Mail;
 use Prgayman\Sms\Contracts\DriverInterface;
 use Prgayman\Sms\Exceptions\DriverException;
 
@@ -34,43 +33,83 @@ class SmsDriver implements DriverInterface
         $this->config = $config;
     }
 
-    public function to(string $mobile)
+    /**
+     * Set to 
+     * 
+     * @param string $mobile
+     * @return $this
+     */
+    public function to(string $mobile): SmsDriver
     {
         $this->driver->to($mobile);
         return $this;
     }
 
-    public function from(string $senderName)
+    /**
+     * Set from (sender name) 
+     * 
+     * @param string $senderName
+     * @return $this
+     */
+    public function from(string $senderName): SmsDriver
     {
         $this->driver->from($senderName);
         return $this;
     }
 
-    public function message(string $message)
+    /**
+     * Set message 
+     * 
+     * @param string $message
+     * @return $this
+     */
+    public function message(string $message): SmsDriver
     {
         $this->driver->message($message);
         return $this;
     }
 
-    public function getTo()
+    /**
+     * Get to 
+     * 
+     * @return string
+     */
+    public function getTo(): string
     {
         return $this->driver->getTo();
     }
 
-    public function getFrom()
+    /**
+     * Get from (sender name)
+     * 
+     * @return string
+     */
+    public function getFrom(): string
     {
         return $this->driver->getFrom();
     }
 
-    public function getMessage()
+    /**
+     * Get message content
+     * 
+     * @return string
+     */
+    public function getMessage(): string
     {
         return $this->driver->getMessage();
     }
 
+    /**
+     * Send Message
+     * 
+     * @throws Prgayman\Sms\Exceptions\DriverException
+     * @return mixed
+     */
     public function send()
     {
         try {
             $response = $this->driver->send();
+            return $response;
         } catch (Exception $e) {
             throw new DriverException($e->getMessage());
         }

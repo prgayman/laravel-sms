@@ -24,6 +24,7 @@ class ArrayDriver extends Driver
         $this->messages = new Collection;
     }
 
+    /** @return void */
     public function send()
     {
         $this->messages[] = [

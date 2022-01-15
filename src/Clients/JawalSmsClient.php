@@ -47,9 +47,9 @@ class JawalSmsClient
      * @param string $mobile
      * 
      * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return bool
+     * @return \Illuminate\Http\Client\Response
      */
-    public function sendSingleSms(string $message, string $sender, string $mobile): bool
+    public function sendSingleSms(string $message, string $sender, string $mobile)
     {
         $response = Http::post("$this->baseUrl/httpSmsProvider.aspx", [
             "username" => $this->username,
@@ -60,7 +60,9 @@ class JawalSmsClient
             'mobile'   => str_replace('+', '', $mobile),
         ]);
 
-        return  $this->successful($response);
+        $this->successful($response);
+
+        return $response;
     }
 
     /**
