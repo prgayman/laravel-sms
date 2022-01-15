@@ -119,10 +119,16 @@ class SmsDriver implements DriverInterface
         }
     }
 
-    protected function addHistory($status)
+    /**
+     * Add row to history if history enabled
+     * 
+     * @param string $status
+     * @return bool
+     */
+    protected function addHistory($status): bool
     {
         if (SmsConfig::historyEnabled() && in_array($status, SmsConfig::historyStatuses())) {
-            app(SmsHistory::class)::create([
+            $history = app(SmsHistory::class)::create([
                 "id"          => Str::uuid()->toString(),
                 "driver"      => $this->config['driver'],
                 "driver_name" => $this->name,
@@ -130,7 +136,9 @@ class SmsDriver implements DriverInterface
                 "from"        => $this->getFrom(),
                 "to"          => $this->getTo()
             ]);
+            return $history ? true : false;
         }
+        return false;
     }
 
     /**

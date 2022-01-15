@@ -12,10 +12,6 @@ class SmsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        # Load migration from database directory
-        $this->loadMigrationsFrom([
-            __DIR__ . '/../database'
-        ]);
 
         # publishes config file with group (laravel-sms-config)
         $this->publishes([
