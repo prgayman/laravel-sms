@@ -42,6 +42,40 @@ Add the facade aliases in the same file:
 ]
 ```
 
+### Lumen
+
+Register the provider in your bootstrap app file `boostrap/app.php`
+
+Add the following line in the "Register Service Providers" section at the bottom of the file.
+
+```php
+$app->register(Prgayman\Sms\SmsServiceProvider::class);
+```
+
+For facades, add the following lines in the section "Create The Application" .
+
+```php
+class_alias(\Prgayman\Sms\Facades\Sms::class, 'Sms');
+```
+
+## Run Migrations
+
+Publish the migrations with this artisan command:
+
+    $ php artisan vendor:publish --tag=laravel-sms-migrations
+
+## Configuration
+
+You can publish the config file with this artisan command:
+
+    $ php artisan vendor:publish --tag=laravel-sms-config
+
+### Available SMS Providers
+|Provider|URL|Tested|For Testing
+|:--------- | :-----------------: | :------: | :------: |
+|array|-|Yes|Yes
+|log|-|Yes|Yes
+
 ## Exceptions
 - ```Prgayman\Sms\Exceptions\ClientException```
 - ```Prgayman\Sms\Exceptions\DriverException```
