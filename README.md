@@ -71,11 +71,11 @@ You can publish the config file with this artisan command:
     $ php artisan vendor:publish --tag=laravel-sms-config
 
 ## Available SMS Providers
-|Provider|URL|Supported countries|Tested|Local Development
-|:--------- | :-----------------: | :------: | :------: | :------: |
-|array|-|All|Yes|Yes
-|log|-|All|Yes|Yes
-|JawalSms|http://www.jawalsms.net/|SA|Yes|No
+|Provider|URL|Supported countries|Tested|Local Development|Config
+|:--------- | :-----------------: | :------: | :------: | :------: | :------: |
+|array|-|All|Yes|Yes|-
+|log|-|All|Yes|Yes|[Click Here](#log)
+|JawalSms|http://www.jawalsms.net/|SA|Yes|No|[Click Here](#jawalsms)
 
 
 ## Exceptions
@@ -158,7 +158,7 @@ Send using helper function and select driver
 sms("array")->to($to)->from($from)->message($message)->send();
 ```
 
-## Drivers configuration
+## Drivers configuration ```.env``` file
 
 ### Log
 |Key|Mandatory|Default Value|Description
