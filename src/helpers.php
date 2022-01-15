@@ -1,7 +1,5 @@
 <?php
 
-
-
 if (!function_exists("sms")) {
 
     /**
@@ -13,5 +11,18 @@ if (!function_exists("sms")) {
     function sms($driver = null)
     {
         return app("sms.manager")->driver($driver);
+    }
+}
+
+if (!function_exists("smsHistory")) {
+
+    /**
+     * Helper function sms history
+     * 
+     * @return \Prgayman\Sms\SmsHistory
+     */
+    function smsHistory()
+    {
+        return app("sms.history");
     }
 }

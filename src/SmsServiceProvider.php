@@ -3,7 +3,8 @@
 namespace Prgayman\Sms;
 
 use Illuminate\Support\ServiceProvider;
-use Prgayman\Sms\Models\SmsHistory;
+use Prgayman\Sms\Models\SmsHistory as ModelsSmsHistory;
+use Prgayman\Sms\SmsHistory;
 
 class SmsServiceProvider extends ServiceProvider
 {
@@ -54,8 +55,8 @@ class SmsServiceProvider extends ServiceProvider
             return new SmsManager($app);
         });
 
-        $this->app->bind('sms', function ($app) {
-            return $app->make('sms.manager')->driver();
+        $this->app->singleton('sms.history', function ($app) {
+            return new SmsHistory($app);
         });
     }
 
@@ -66,6 +67,6 @@ class SmsServiceProvider extends ServiceProvider
      */
     private function bindModels(): void
     {
-        $this->app->bind(SmsHistory::class, config('sms.sms_histories.model'));
+        $this->app->bind(ModelsSmsHistory::class, config('sms.sms_histories.model'));
     }
 }
