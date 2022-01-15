@@ -71,11 +71,11 @@ You can publish the config file with this artisan command:
     $ php artisan vendor:publish --tag=laravel-sms-config
 
 ## Available SMS Providers
-|Provider|URL|Tested|For Testing
-|:--------- | :-----------------: | :------: | :------: |
-|array|-|Yes|Yes
-|log|-|Yes|Yes
-|JawalSms|http://www.jawalsms.net/|Yes|No
+|Provider|URL|Supported countries|Tested|For Testing
+|:--------- | :-----------------: | :------: | :------: | :------: |
+|array|-|All|Yes|Yes
+|log|-|All|Yes|Yes
+|JawalSms|http://www.jawalsms.net/|SA|Yes|No
 
 
 ## Exceptions
