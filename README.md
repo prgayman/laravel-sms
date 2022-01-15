@@ -108,14 +108,17 @@ Prgayman\Sms\Facades\Sms::setDefaultDriver("array");
 ```
 
 ### Enable sms history using database
-```dotenv
-SMS_HISTORY_ENABLED=true
-```
 
-Make sure publish the migrations with this artisan command:
+- Enable the key ```SMS_HISTORY_ENABLED``` in ```.env``` file
 
-    $ php artisan vendor:publish --tag=laravel-sms-migrations
+  ```dotenv
+  SMS_HISTORY_ENABLED=true
+  ```
 
-Run migrate with this artisan command:
+- Make sure publish the migrations with this artisan command:
 
-    $ php artisan migrate
+      $ php artisan vendor:publish --tag=laravel-sms-migrations
+
+- Run migrate with this artisan command:
+
+      $ php artisan migrate
