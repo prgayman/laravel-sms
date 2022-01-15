@@ -2,10 +2,8 @@
 
 namespace Prgayman\Sms\Drivers;
 
-use Exception;
 use Illuminate\Support\Collection;
 use Prgayman\Sms\Drivers\Driver;
-use Prgayman\Sms\Exceptions\DriverException;
 
 class ArrayDriver extends Driver
 {
@@ -28,16 +26,12 @@ class ArrayDriver extends Driver
 
     public function send()
     {
-        try {
-            $this->messages[] = [
-                "driver"  => (string) __CLASS__,
-                "from"    => $this->getFrom(),
-                "to"      => $this->getTo(),
-                "message" => $this->getMessage()
-            ];
-        } catch (Exception $e) {
-            throw new DriverException($e->getMessage());
-        }
+        $this->messages[] = [
+            "driver"  => (string) __CLASS__,
+            "from"    => $this->getFrom(),
+            "to"      => $this->getTo(),
+            "message" => $this->getMessage()
+        ];
     }
 
     /**

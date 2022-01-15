@@ -39,10 +39,6 @@ class JawalSmsDriver extends Driver
 
     public function send()
     {
-        // $from = $this->getFrom();
-        // $to = $this->getTo();
-        // $message = $this->getMessage();
-
-        // $this->client->sendSingleSms($message, $from, $to);
+        $this->client->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
     }
 }

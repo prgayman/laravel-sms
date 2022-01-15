@@ -2,9 +2,7 @@
 
 namespace Prgayman\Sms\Drivers;
 
-use Exception;
 use Prgayman\Sms\Contracts\DriverInterface;
-use Prgayman\Sms\Exceptions\DriverException;
 
 abstract class Driver implements DriverInterface
 {

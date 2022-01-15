@@ -2,8 +2,6 @@
 
 namespace Prgayman\Sms\Drivers;
 
-use Exception;
-use Prgayman\Sms\Exceptions\DriverException;
 use Psr\Log\LoggerInterface;
 
 class LogDriver extends Driver
@@ -38,19 +36,14 @@ class LogDriver extends Driver
 
     public function send()
     {
-        try {
-            $this->logger->debug($this->getMimeEntityString());
-        } catch (Exception $e) {
-            throw new DriverException($e->getMessage());
-        }
+        $this->logger->debug($this->getEntityString());
     }
 
     /**
      * Get a loggable string 
-
      * @return string
      */
-    protected function getMimeEntityString()
+    protected function getEntityString()
     {
         return (string) __CLASS__ . PHP_EOL . "[FROM]: {$this->getFrom()}" . PHP_EOL . "[TO]: {$this->getTo()}" . PHP_EOL . "[MESSAGE]: {$this->getMessage()}";
     }
