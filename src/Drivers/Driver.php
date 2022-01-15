@@ -62,7 +62,7 @@ abstract class Driver implements DriverInterface
 
     public function getMessage()
     {
-        if (is_null($this->from)) {
+        if (is_null($this->text)) {
             throw new InvalidArgumentException('The "message" value cannot be null');
         }
         return $this->text;

@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Facade;
  * 
  * @see \Prgayman\Sms\SmsManager
  */
-
 class Sms extends Facade
 {
     /**
