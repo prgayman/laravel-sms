@@ -70,7 +70,7 @@ class SmsManager
      * Resolve the given driver.
      *
      * @param string $name
-     * @return \Prgayman\Sms\Contracts\DriverInterface
+     * @return \Prgayman\Sms\SmsDriver
      *
      * @throws \InvalidArgumentException
      */
@@ -97,7 +97,7 @@ class SmsManager
             }
         }
 
-        return $driver;
+        return new SmsDriver($driver, $name, $config);
     }
 
     /**
@@ -138,6 +138,29 @@ class SmsManager
     public function setDefaultDriver($name)
     {
         $this->app['config']['sms.default'] = $name;
+    }
+
+    /**
+     * Get the application instance used by the manager.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application
+     */
+    public function getApplication()
+    {
+        return $this->app;
+    }
+
+    /**
+     * Set the application instance used by the manager.
+     *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return $this
+     */
+    public function setApplication($app)
+    {
+        $this->app = $app;
+
+        return $this;
     }
 
     /**
