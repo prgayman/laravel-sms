@@ -87,3 +87,35 @@ You can publish the config file with this artisan command:
 - ```\Prgayman\Sms\Events\MessageSending::class```
 - ```\Prgayman\Sms\Events\MessageSent::class```
 - ```\Prgayman\Sms\Events\MessageFailed::class```
+
+## Using
+
+
+### Set default driver
+
+#### Using ```.env```
+```dotenv
+SMS_DRIVER=log
+```
+#### Using facades
+```php
+/**
+ * Set the default sms driver name.
+ * 
+ * @param string $driver
+*/
+Prgayman\Sms\Facades\Sms::setDefaultDriver("array");
+```
+
+### Enable sms history using database
+```dotenv
+SMS_HISTORY_ENABLED=true
+```
+
+Make sure publish the migrations with this artisan command:
+
+    $ php artisan vendor:publish --tag=laravel-sms-migrations
+
+Run migrate with this artisan command:
+
+    $ php artisan migrate
