@@ -50,6 +50,15 @@ return [
     ],
 
     /**
+     * Package system events.
+     */
+    'events' => [
+        'message_failed'  =>  \Prgayman\Sms\Events\MessageFailed::class,
+        'message_sending' => \Prgayman\Sms\Events\MessageSending::class,
+        'message_sent'    => \Prgayman\Sms\Events\MessageSent::class,
+    ],
+
+    /**
      * History configuration
      */
     "history" => [

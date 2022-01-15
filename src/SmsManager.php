@@ -97,7 +97,7 @@ class SmsManager
             }
         }
 
-        return new SmsDriver($driver, $name, $config);
+        return new SmsDriver($driver, $name, $config, $this->app['events']);
     }
 
     /**

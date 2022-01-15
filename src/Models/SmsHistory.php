@@ -3,6 +3,7 @@
 namespace Prgayman\Sms\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Prgayman\Sms\SmsConfig;
 
 class SmsHistory extends Model
 {
@@ -39,7 +40,7 @@ class SmsHistory extends Model
     public function getTable(): string
     {
         if (!$this->table) {
-            $this->table = config('sms.sms_histories.table', 'sms_histories');
+            $this->table = SmsConfig::smsHistories("table", "sms_histories");
         }
 
         return parent::getTable();

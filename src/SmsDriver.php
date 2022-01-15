@@ -7,9 +7,17 @@ use Illuminate\Support\Str;
 use Prgayman\Sms\Contracts\DriverInterface;
 use Prgayman\Sms\Exceptions\DriverException;
 use Prgayman\Sms\Models\SmsHistory;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class SmsDriver implements DriverInterface
 {
+    /**
+     * The event dispatcher instance.
+     *
+     * @var \Illuminate\Contracts\Events\Dispatcher|null
+     */
+    protected $events;
+
     /**
      * Sms driver
      * @var \Prgayman\Sms\Contracts\DriverInterface
@@ -28,11 +36,12 @@ class SmsDriver implements DriverInterface
      */
     protected $name;
 
-    public function __construct(DriverInterface $driver, string $name, array $config)
+    public function __construct(DriverInterface $driver, string $name, array $config, Dispatcher $events = null)
     {
         $this->driver = $driver;
         $this->name = $name;
         $this->config = $config;
+        $this->events = $events;
     }
 
     /**
@@ -109,12 +118,20 @@ class SmsDriver implements DriverInterface
      */
     public function send()
     {
+        $data = $this->payload();
+
         try {
+            $this->dispatchSendingEvent($data);
+
             $response = $this->driver->send();
-            $this->addHistory(SmsHistory::SUCCESSED);
+
+            $this->addHistory($data, SmsHistory::SUCCESSED);
+            $this->dispatchSentEvent($data);
+
             return $response;
         } catch (Exception $e) {
-            $this->addHistory(SmsHistory::FAILED);
+            $this->addHistory($data, SmsHistory::FAILED);
+            $this->dispatchFailedEvent($data, $e->getMessage());
             throw new DriverException($e->getMessage());
         }
     }
@@ -122,23 +139,86 @@ class SmsDriver implements DriverInterface
     /**
      * Add row to history if history enabled
      * 
+     * @param array $data
      * @param string $status
      * @return bool
      */
-    protected function addHistory($status): bool
+    protected function addHistory(array $data, string $status): bool
     {
-        if (SmsConfig::historyEnabled() && in_array($status, SmsConfig::historyStatuses())) {
-            $history = app(SmsHistory::class)::create([
-                "id"          => Str::uuid()->toString(),
-                "driver"      => $this->config['driver'],
-                "driver_name" => $this->name,
-                "message"     => $this->getMessage(),
-                "from"        => $this->getFrom(),
-                "to"          => $this->getTo()
-            ]);
+        if (SmsConfig::history("enabled", false) && in_array($status, SmsConfig::history("statuses", []))) {
+            $data['id'] = Str::uuid()->toString();
+            $history = app(SmsHistory::class)::create($data);
             return $history ? true : false;
         }
         return false;
+    }
+
+    /**
+     * Dispatch message failed event
+     * 
+     * @param array $data
+     * @param string $message
+     * @return void
+     */
+    protected function dispatchFailedEvent(array $data, string $message)
+    {
+        if (isset($this->events)) {
+            $event = SmsConfig::events('message_failed');
+            if ($event) {
+                $this->events->dispatch(new $event(
+                    $data,
+                    $message
+                ));
+            }
+        }
+    }
+
+    /**
+     * Dispatch message sending event
+     * 
+     * @param array $data
+     * @return void
+     */
+    protected function dispatchSendingEvent(array $data)
+    {
+        if (isset($this->events)) {
+            $event = SmsConfig::events('message_sending');
+            if ($event) {
+                $this->events->dispatch(new $event(
+                    $data
+                ));
+            }
+        }
+    }
+
+    /**
+     * Dispatch message sent event
+     * 
+     * @param array $data
+     * @return void
+     */
+    protected function dispatchSentEvent(array $data)
+    {
+        if (isset($this->events)) {
+            $event = SmsConfig::events('message_sent');
+            if ($event) {
+                $this->events->dispatch(new $event(
+                    $data
+                ));
+            }
+        }
+    }
+
+    /** @return array */
+    protected function payload(): array
+    {
+        return [
+            "driver"      => $this->config['driver'],
+            "driver_name" => $this->name,
+            "message"     => $this->getMessage(),
+            "from"        => $this->getFrom(),
+            "to"          => $this->getTo()
+        ];
     }
 
     /**

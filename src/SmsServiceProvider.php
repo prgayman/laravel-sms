@@ -67,6 +67,6 @@ class SmsServiceProvider extends ServiceProvider
      */
     private function bindModels(): void
     {
-        $this->app->bind(ModelsSmsHistory::class, config('sms.sms_histories.model'));
+        $this->app->bind(ModelsSmsHistory::class, SmsConfig::smsHistories('model'));
     }
 }
