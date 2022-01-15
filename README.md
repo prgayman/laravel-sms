@@ -88,7 +88,7 @@ You can publish the config file with this artisan command:
 - ```\Prgayman\Sms\Events\MessageSent::class```
 - ```\Prgayman\Sms\Events\MessageFailed::class```
 
-## Using
+## Usage
 
 
 ### Set default driver
