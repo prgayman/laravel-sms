@@ -70,12 +70,20 @@ You can publish the config file with this artisan command:
 
     $ php artisan vendor:publish --tag=laravel-sms-config
 
-### Available SMS Providers
+## Available SMS Providers
 |Provider|URL|Tested|For Testing
 |:--------- | :-----------------: | :------: | :------: |
 |array|-|Yes|Yes
 |log|-|Yes|Yes
+|JawalSms|http://www.jawalsms.net/|Yes|No
+
 
 ## Exceptions
 - ```Prgayman\Sms\Exceptions\ClientException```
 - ```Prgayman\Sms\Exceptions\DriverException```
+
+
+## Events
+- ```\Prgayman\Sms\Events\MessageSending::class```
+- ```\Prgayman\Sms\Events\MessageSent::class```
+- ```\Prgayman\Sms\Events\MessageFailed::class```
