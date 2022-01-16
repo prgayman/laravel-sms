@@ -119,7 +119,6 @@ class SmsDriver implements DriverInterface
     public function send()
     {
         $data = $this->payload();
-
         try {
             $this->dispatchSendingEvent($data);
 

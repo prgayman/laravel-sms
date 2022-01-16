@@ -13,11 +13,6 @@ class TaqnyatDriver extends Driver
      */
     protected $authorization;
 
-    /**
-     * Taqnyat instance client
-     * @var \Prgayman\Sms\Clients\TaqnyatClient
-     */
-    protected $client;
 
     /**
      * Create a new log transport instance.
@@ -26,7 +21,12 @@ class TaqnyatDriver extends Driver
      */
     public function __construct(string $authorization)
     {
-        $this->client = new TaqnyatClient($authorization);
+        $this->authorization = $authorization;
+    }
+
+    public function client()
+    {
+        return new TaqnyatClient($this->authorization);
     }
 
     /** 
@@ -36,6 +36,6 @@ class TaqnyatDriver extends Driver
      */
     public function send()
     {
-        return $this->client->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
+        return $this->client()->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
     }
 }

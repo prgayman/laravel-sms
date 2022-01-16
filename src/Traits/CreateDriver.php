@@ -8,6 +8,7 @@ use Prgayman\Sms\Drivers\ArrayDriver;
 use Prgayman\Sms\Drivers\JawalSmsDriver;
 use Prgayman\Sms\Drivers\NexmoDriver;
 use Prgayman\Sms\Drivers\TaqnyatDriver;
+use Prgayman\Sms\Drivers\TwilioDriver;
 use Psr\Log\LoggerInterface;
 
 trait CreateDriver
@@ -62,6 +63,7 @@ trait CreateDriver
     {
         return new TaqnyatDriver($config["authorization"]);
     }
+
     /**
      * Create an instance of the NexmoDriver Driver.
      *
@@ -70,5 +72,15 @@ trait CreateDriver
     protected function createNexmoDriver(array $config)
     {
         return new NexmoDriver($config["api_key"], $config["api_secret"]);
+    }
+
+    /**
+     * Create an instance of the TwilioDriver Driver.
+     *
+     * @return \Prgayman\Sms\Drivers\TwilioDriver
+     */
+    protected function createTwilioDriver(array $config)
+    {
+        return new TwilioDriver($config["sid"], $config["token"], $config["sender"] ?? null);
     }
 }

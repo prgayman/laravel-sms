@@ -38,3 +38,25 @@ Or you can add it directly in your composer.json file:
 |SMS_NEXMO_API_KEY|Yes|null| Api Key
 |SMS_NEXMO_API_SECRET|Yes|null| Api Secret
 
+## Twilio
+
+Installation ```twilio/sdk``` package:
+
+    $ composer require twilio/sdk
+
+Or you can add it directly in your composer.json file:
+```json
+{
+    "require": {
+        "twilio/sdk": "^6.33",
+    }
+}
+```
+
+|Key|Mandatory|Default|Description
+|:------------------ | :---------- |  :------ | :------------- |
+|SMS_TWILIO_SID|Yes|null| Account Sid
+|SMS_TWILIO_TOKEN|Yes|null| Account Token
+|SMS_TWILIO_SENDER_NAME|No|null| Sender Name (optional) you can set sender name using function ```from()```
+
+

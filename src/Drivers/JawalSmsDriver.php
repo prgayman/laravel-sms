@@ -20,21 +20,20 @@ class JawalSmsDriver extends Driver
     protected $password;
 
     /**
-     * JawalSms instance client
-     * @var \Prgayman\Sms\Clients\JawalSmsClient
-     */
-    protected $client;
-
-    /**
      * Create a new log transport instance.
      *
      * @return void
      */
-    public function __construct(string $username, string $password, ?string $sender = null)
+    public function __construct(string $username, string $password, ?string $senderName = null)
     {
-        $this->from = $sender;
+        $this->username = $username;
+        $this->password = $password;
+        $this->senderName = $senderName;
+    }
 
-        $this->client = new JawalSmsClient($username, $password);
+    public function client()
+    {
+        return new JawalSmsClient($this->username, $this->password);
     }
 
     /** 
@@ -44,6 +43,6 @@ class JawalSmsDriver extends Driver
      */
     public function send()
     {
-        return $this->client->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
+        return $this->client()->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
     }
 }

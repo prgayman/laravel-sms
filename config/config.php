@@ -50,6 +50,13 @@ return [
             "api_secret" => env("SMS_NEXMO_API_SECRET"),
         ],
 
+        "twilio" => [
+            "driver" => "twilio",
+            "sid" => env("SMS_TWILIO_SID"),
+            "token" => env("SMS_TWILIO_TOKEN"),
+            "sender" => env("SMS_TWILIO_SENDER_NAME"),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),

@@ -76,6 +76,7 @@ You can publish the config file with this artisan command:
 |JawalSms|https://www.jawalsms.net/|SA|Yes|[Click](docs/drivers_configuration.md#jawalsms)
 |Taqnyat|https://www.taqnyat.sa/|SA|Yes|[Click](docs/drivers_configuration.md#taqnyat)
 |Nexmo|https://www.nexmo.com/|Global|Yes|[Click](docs/drivers_configuration.md#nexmo)
+|Twilio|https://www.twilio.com/|Global|Yes|[Click](docs/drivers_configuration.md#twilio)
 
 
 ## Available SMS Drivers local development

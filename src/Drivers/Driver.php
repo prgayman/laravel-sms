@@ -26,6 +26,13 @@ abstract class Driver implements DriverInterface
      */
     protected $text;
 
+    /**
+     * Driver Sender Name
+     * 
+     * @var string|null
+     */
+    protected $senderName;
+
     public function to(string $mobile)
     {
         $this->to = $mobile;
@@ -54,10 +61,12 @@ abstract class Driver implements DriverInterface
 
     public function getFrom()
     {
-        if (is_null($this->from)) {
+        $from = is_null($this->from) && !is_null($this->senderName) ? $this->senderName : $this->from;
+
+        if (is_null($from)) {
             throw new InvalidArgumentException('The "from" value cannot be null');
         }
-        return $this->from;
+        return $from;
     }
 
     public function getMessage()
