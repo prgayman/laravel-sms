@@ -61,7 +61,10 @@ trait CreateDriver
      */
     protected function createTaqnyatDriver(array $config)
     {
-        return new TaqnyatDriver($config["authorization"]);
+        return new TaqnyatDriver(
+            $config["authorization"],
+            $config["sender"] ?? null
+        );
     }
 
     /**
@@ -71,7 +74,11 @@ trait CreateDriver
      */
     protected function createNexmoDriver(array $config)
     {
-        return new NexmoDriver($config["api_key"], $config["api_secret"]);
+        return new NexmoDriver(
+            $config["api_key"],
+            $config["api_secret"],
+            $config["sender"] ?? null
+        );
     }
 
     /**
@@ -81,6 +88,10 @@ trait CreateDriver
      */
     protected function createTwilioDriver(array $config)
     {
-        return new TwilioDriver($config["sid"], $config["token"], $config["sender"] ?? null);
+        return new TwilioDriver(
+            $config["sid"],
+            $config["token"],
+            $config["sender"] ?? null
+        );
     }
 }

@@ -19,9 +19,10 @@ class TaqnyatDriver extends Driver
      *
      * @return void
      */
-    public function __construct(string $authorization)
+    public function __construct(string $authorization, ?string $senderName = null)
     {
         $this->authorization = $authorization;
+        $this->senderName = $senderName;
     }
 
     public function client()

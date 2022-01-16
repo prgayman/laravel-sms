@@ -10,10 +10,11 @@ class NexmoDriver extends Driver
      *
      * @return void
      */
-    public function __construct(string $apiKey, string $apiSecret)
+    public function __construct(string $apiKey, string $apiSecret, ?string $senderName = null)
     {
         config()->set('nexmo.api_key', $apiKey);
         config()->set('nexmo.api_secret', $apiSecret);
+        $this->senderName = $senderName;
     }
 
     /**

@@ -17,6 +17,7 @@
 |Key|Mandatory|Default|Description
 |:------------------ | :---------- |  :------ | :------------- |
 |SMS_TAQNYAT_AUTHORIZATION|Yes|null| Account authorization password
+|SMS_TAQNYAT_SENDER_NAME|No|null| Sender Name (optional) you can set sender name using function ```from()```
 
 ## Nexmo
 
@@ -37,6 +38,7 @@ Or you can add it directly in your composer.json file:
 |:------------------ | :---------- |  :------ | :------------- |
 |SMS_NEXMO_API_KEY|Yes|null| Api Key
 |SMS_NEXMO_API_SECRET|Yes|null| Api Secret
+|SMS_NEXMO_SENDER_NAME|No|null| Sender Name (optional) you can set sender name using function ```from()```
 
 ## Twilio
 

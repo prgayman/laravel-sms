@@ -42,12 +42,14 @@ return [
         "taqnyat" => [
             "driver" => "taqnyat",
             'authorization' => env('SMS_TAQNYAT_AUTHORIZATION'),
+            'sender' => env('SMS_TAQNYAT_SENDER_NAME'),
         ],
 
         "nexmo" => [
             "driver" => "nexmo",
             "api_key" => env("SMS_NEXMO_API_KEY"),
             "api_secret" => env("SMS_NEXMO_API_SECRET"),
+            "sender" => env("SMS_NEXMO_SENDER_NAME"),
         ],
 
         "twilio" => [
