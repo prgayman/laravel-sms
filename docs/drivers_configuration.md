@@ -17,3 +17,24 @@
 |Key|Mandatory|Default|Description
 |:------------------ | :---------- |  :------ | :------------- |
 |SMS_TAQNYAT_AUTHORIZATION|Yes|null| Account authorization password
+
+## Nexmo
+
+Installation nexmo laravel package:
+
+    $ composer require nexmo/laravel
+
+Or you can add it directly in your composer.json file:
+```json
+{
+    "require": {
+        "nexmo/laravel": "^2.0"
+    }
+}
+```
+
+|Key|Mandatory|Default|Description
+|:------------------ | :---------- |  :------ | :------------- |
+|SMS_NEXMO_API_KEY|Yes|null| Api Key
+|SMS_NEXMO_API_SECRET|Yes|null| Api Secret
+

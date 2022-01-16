@@ -6,6 +6,7 @@ use Prgayman\Sms\Drivers\LogDriver;
 use Illuminate\Log\LogManager;
 use Prgayman\Sms\Drivers\ArrayDriver;
 use Prgayman\Sms\Drivers\JawalSmsDriver;
+use Prgayman\Sms\Drivers\NexmoDriver;
 use Prgayman\Sms\Drivers\TaqnyatDriver;
 use Psr\Log\LoggerInterface;
 
@@ -60,5 +61,14 @@ trait CreateDriver
     protected function createTaqnyatDriver(array $config)
     {
         return new TaqnyatDriver($config["authorization"]);
+    }
+    /**
+     * Create an instance of the NexmoDriver Driver.
+     *
+     * @return \Prgayman\Sms\Drivers\NexmoDriver
+     */
+    protected function createNexmoDriver(array $config)
+    {
+        return new NexmoDriver($config["api_key"], $config["api_secret"]);
     }
 }

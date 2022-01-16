@@ -44,6 +44,12 @@ return [
             'authorization' => env('SMS_TAQNYAT_AUTHORIZATION'),
         ],
 
+        "nexmo" => [
+            "driver" => "nexmo",
+            "api_key" => env("SMS_NEXMO_API_KEY"),
+            "api_secret" => env("SMS_NEXMO_API_SECRET"),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),
