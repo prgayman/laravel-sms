@@ -2,8 +2,9 @@
 
 namespace Prgayman\Sms\Channels;
 
+use Exception;
 use Illuminate\Notifications\Notification;
-use Prgayman\Sms\Contracts\DriverInterface;
+use Prgayman\Sms\SmsNotification;
 
 class SmsChannel
 {
@@ -18,7 +19,7 @@ class SmsChannel
     {
         $sms = $notification->toSms($notifiable);
 
-        if ($sms instanceof DriverInterface) {
+        if ($sms instanceof SmsNotification) {
             return $sms->send();
         }
 
