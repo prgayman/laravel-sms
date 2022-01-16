@@ -13,7 +13,7 @@ class SmsNotification
 
     public function __construct()
     {
-        $this->driver = $this->driver();
+        $this->driver = app('sms.manager');
     }
 
     /**

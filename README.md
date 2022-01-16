@@ -225,6 +225,50 @@ sms("array")->to($to)->from($from)->message($message)->send();
     ->send();
   ```
 
+## Channel Usage
+First you have to create your notification using ```php artisan make:notification``` command.
+then ```Prgayman\Sms\Channels\SmsChannel::class``` can be used as channel like the below:
+
+```php
+
+use Illuminate\Notifications\Notification;
+use Prgayman\Sms\SmsNotification;
+
+class SendSmsNotification extends Notification
+{
+
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function via($notifiable)
+    {
+        return ['sms']; # add this channel
+    }
+
+    /**
+     * @param mixed $notifiable
+     * @return \Prgayman\Sms\SmsNotification
+     */
+    public function toSms($notifiable)
+    {
+        # Send message with default driver
+        return (new SmsNotification)
+          ->to("+962790000000")
+          ->from("SenderName")
+          ->message("Test New Message");
+
+        # Send message with select driver
+        return (new SmsNotification)
+          ->driver('array')
+          ->to("+962790000000")
+          ->from("SenderName")
+          ->message("Test New Message");
+    }
+}
+```
 ## SMS History
 ```php
 use Prgayman\Sms\Facades\SmsHistory;

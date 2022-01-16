@@ -2,7 +2,6 @@
 
 namespace Prgayman\Sms\Channels;
 
-use Exception;
 use Illuminate\Notifications\Notification;
 use Prgayman\Sms\SmsNotification;
 
