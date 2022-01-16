@@ -173,9 +173,15 @@ sms("array")->to($to)->from($from)->message($message)->send();
 
   class CustomDriver extends Driver {
 
-      # You not need to run events ot store history package automatically run all events and store history
+      # You not need to run events and store history 
+      # package automatically run all events and store history
       public function send()
       {
+          $to = $this->getTo();
+          $from = $this->getFrom();
+          $message = $this->getMessage();
+
+          # Handler send message
       }
 
   }
