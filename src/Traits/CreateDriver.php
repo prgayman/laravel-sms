@@ -21,7 +21,7 @@ trait CreateDriver
         $logger = $this->app->make(LoggerInterface::class);
 
         if ($logger instanceof LogManager) {
-            $logger = $logger->channel($config['channel']);
+            $logger = $logger->channel($config['channel'] ?? null);
         }
 
         return new LogDriver($logger);

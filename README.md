@@ -71,11 +71,17 @@ You can publish the config file with this artisan command:
     $ php artisan vendor:publish --tag=laravel-sms-config
 
 ## Available SMS Providers
-|Provider|URL|Supported countries|Tested|Local Development|Config
-|:--------- | :-----------------: | :------: | :------: | :------: | :------: |
-|array|-|All|Yes|Yes|-
-|log|-|All|Yes|Yes|[Click Here](#log)
-|JawalSms|http://www.jawalsms.net/|SA|Yes|No|[Click Here](#jawalsms)
+|Provider|URL|Countries|Tested|Config
+|:--------- | :-----------------: | :------: | :------: | :------: |
+|JawalSms|http://www.jawalsms.net/|SA|Yes|[Click](docs/drivers_configuration.md#jawalsms)
+
+
+## Available SMS Drivers local development
+|Provider|Config
+|:--------- | :------: |
+|array|-
+|log|[Click](docs/drivers_configuration.md#log)
+
 
 
 ## Exceptions
@@ -158,19 +164,90 @@ Send using helper function and select driver
 sms("array")->to($to)->from($from)->message($message)->send();
 ```
 
-## Drivers configuration ```.env``` file
+### Create custom driver
 
-### Log
-|Key|Mandatory|Default Value|Description
-|:------------------ | :---------- |  :------ | :------------- |
-|SMS_LOG_CHANNEL|No|null| Log channel name if null using default log channel
+- Create class extends from ```\Prgayman\Sms\Drivers\Driver``` and handler send function
 
-### JawalSms
-|Key|Mandatory|Default Value|Description
-|:------------------ | :---------- |  :------ | :------------- |
-|SMS_JAWAL_SMS_USERNAME|Yes|null| Account username
-|SMS_JAWAL_SMS_PASSWORD|Yes|null| Account password
-|SMS_JAWAL_SMS_SENDER|No|null| Sender Name (optional) you can set sender name using function ```from()```
+  ```php
+  use Prgayman\Sms\SmsDriver;
+
+  class CustomDriver extends Driver {
+
+      # You not need to run events ot store history package automatically run all events and store history
+      public function send()
+      {
+      }
+
+  }
+  ```
+- Add driver confg in ```config/sms.php```
+  ```php 
+    "drivers"=>[
+      .......
+
+      # Use custom driver
+      'your-driver-name'=>[
+        'handler'=> \App\SmsDrivers\CustomDriver::class
+      ],
+
+      # Use supported drivers but different name
+      # Copy driver object and change name
+      "new-log-driver" => [
+            "driver" => "log",
+            'channel' => env('SMS_LOG_CHANNEL'),
+      ],
+    ]
+  ```
+- Send message with custom driver
+  ```php
+  # Use driver 
+  Sms::driver("your-driver-name")
+      ->to($to)
+      ->from($from)
+      ->message($message)
+      ->send();
+
+  # Or set custom driver in default driver or set 
+  # SMS_DRIVER=your-driver-name in dotenv file
+  Sms::setDefaultDriver("your-driver-name");
+
+  Sms::to($to)
+    ->from($from)
+    ->message($message)
+    ->send();
+  ```
+
+## SMS History
+```php
+use Prgayman\Sms\Facades\SmsHistory;
+
+# Get all
+$histories = SmsHistory::get();
+
+# Use Filters all filter us (optional)
+$histories = SmsHistory::recipients("+962790000000")
+->senders(["SendName"])
+->statuses([
+  Prgayman\Sms\Models\SmsHistory::SUCCESSED,
+  Prgayman\Sms\Models\SmsHistory::FAILED,
+])
+->drivers(["log","array"])
+->driverNames(["custom_name"])
+->get();
+
+# Or can use helper function
+$histories = smsHistory()
+->recipients("+962790000000")
+->senders(["SendName"])
+->statuses([
+  Prgayman\Sms\Models\SmsHistory::SUCCESSED,
+  Prgayman\Sms\Models\SmsHistory::FAILED,
+])
+->drivers(["log","array"])
+->driverNames(["custom_name"])
+->get();
+```
+
 
 ## Licence
 
