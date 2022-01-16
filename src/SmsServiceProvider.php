@@ -5,6 +5,8 @@ namespace Prgayman\Sms;
 use Illuminate\Support\ServiceProvider;
 use Prgayman\Sms\Models\SmsHistory as ModelsSmsHistory;
 use Prgayman\Sms\SmsHistory;
+use Illuminate\Notifications\ChannelManager;
+use Prgayman\Sms\Channels\SmsChannel;
 
 class SmsServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,10 @@ class SmsServiceProvider extends ServiceProvider
             __DIR__ . '/../config/config.php',
             'sms'
         );
+
+        $this->app->make(ChannelManager::class)->extend('sms', function ($app) {
+            return $app->make(SmsChannel::class);
+        });
 
         $this->registerDriver();
 
