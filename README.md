@@ -169,11 +169,11 @@ sms("array")->to($to)->from($from)->message($message)->send();
 - Create class extends from ```\Prgayman\Sms\Drivers\Driver``` and handler send function
 
   ```php
-  use Prgayman\Sms\SmsDriver;
+  use Prgayman\Sms\Drivers\Driver;
 
   class CustomDriver extends Driver {
 
-      # You not need to run events and store history 
+      # You not need to run events or store history 
       # package automatically run all events and store history
       public function send()
       {
@@ -230,7 +230,7 @@ use Prgayman\Sms\Facades\SmsHistory;
 # Get all
 $histories = SmsHistory::get();
 
-# Use Filters all filter us (optional)
+# Use Filters all filter is optional
 $histories = SmsHistory::recipients("+962790000000")
 ->senders(["SendName"])
 ->statuses([

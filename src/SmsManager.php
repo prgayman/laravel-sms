@@ -83,10 +83,10 @@ class SmsManager
         }
 
         if (isset($config['handler'])) {
-            if ($config['handler'] instanceof DriverInterface) {
+            if (is_subclass_of($config['handler'], DriverInterface::class)) {
                 $driver = new $config['handler'];
             } else {
-                throw new InvalidArgumentException("Driver [{$name}] is instanceof [\Prgayman\Sms\Contracts\DriverInterface].");
+                throw new InvalidArgumentException("Driver [{$name}] is not instanceof [\Prgayman\Sms\Contracts\DriverInterface].");
             }
         } else {
             if (!in_array($config['driver'] ?? $name, $this->supportedDrivers)) {

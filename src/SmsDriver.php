@@ -213,7 +213,7 @@ class SmsDriver implements DriverInterface
     protected function payload(): array
     {
         return [
-            "driver"      => $this->config['driver'],
+            "driver"      => $this->config['driver'] ?? $this->name,
             "driver_name" => $this->name,
             "message"     => $this->getMessage(),
             "from"        => $this->getFrom(),
