@@ -39,6 +39,11 @@ return [
             'sender'   => env('SMS_JAWAL_SMS_SENDER'),
         ],
 
+        "taqnyat" => [
+            "driver" => "taqnyat",
+            'authorization' => env('SMS_TAQNYAT_AUTHORIZATION'),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),

@@ -6,6 +6,7 @@ use Prgayman\Sms\Drivers\LogDriver;
 use Illuminate\Log\LogManager;
 use Prgayman\Sms\Drivers\ArrayDriver;
 use Prgayman\Sms\Drivers\JawalSmsDriver;
+use Prgayman\Sms\Drivers\TaqnyatDriver;
 use Psr\Log\LoggerInterface;
 
 trait CreateDriver
@@ -49,5 +50,15 @@ trait CreateDriver
             $config["password"],
             $config["sender"] ?? null
         );
+    }
+
+    /**
+     * Create an instance of the TaqnyatDriver Driver.
+     *
+     * @return \Prgayman\Sms\Drivers\TaqnyatDriver
+     */
+    protected function createTaqnyatDriver(array $config)
+    {
+        return new TaqnyatDriver($config["authorization"]);
     }
 }

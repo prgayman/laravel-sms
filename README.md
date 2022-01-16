@@ -73,7 +73,8 @@ You can publish the config file with this artisan command:
 ## Available SMS Providers
 |Provider|URL|Countries|Tested|Config
 |:--------- | :-----------------: | :------: | :------: | :------: |
-|JawalSms|http://www.jawalsms.net/|SA|Yes|[Click](docs/drivers_configuration.md#jawalsms)
+|JawalSms|https://www.jawalsms.net/|SA|Yes|[Click](docs/drivers_configuration.md#jawalsms)
+|Taqnyat|https://www.taqnyat.sa/|SA|Yes|[Click](docs/drivers_configuration.md#taqnyat)
 
 
 ## Available SMS Drivers local development

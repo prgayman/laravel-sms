@@ -2,26 +2,20 @@
 
 namespace Prgayman\Sms\Drivers;
 
-use Prgayman\Sms\Clients\JawalSmsClient;
+use Prgayman\Sms\Clients\TaqnyatClient;
 
-class JawalSmsDriver extends Driver
+class TaqnyatDriver extends Driver
 {
 
     /**
-     * Username
+     * Authorization bearer token
      * @var string
      */
-    protected $username;
+    protected $authorization;
 
     /**
-     * Password
-     * @var string
-     */
-    protected $password;
-
-    /**
-     * JawalSms instance client
-     * @var \Prgayman\Sms\Clients\JawalSmsClient
+     * Taqnyat instance client
+     * @var \Prgayman\Sms\Clients\TaqnyatClient
      */
     protected $client;
 
@@ -30,11 +24,9 @@ class JawalSmsDriver extends Driver
      *
      * @return void
      */
-    public function __construct(string $username, string $password, ?string $sender = null)
+    public function __construct(string $authorization)
     {
-        $this->from = $sender;
-
-        $this->client = new JawalSmsClient($username, $password);
+        $this->client = new TaqnyatClient($authorization);
     }
 
     /** 
