@@ -4,7 +4,11 @@
   "keywords": [
     "prgayman",
     "laravel",
-    "sms"
+    "sms",
+    "nexmo",
+    "taqnyat",
+    "jawalsms",
+    "twilio"
   ],
   "homepage": "https://github.com/prgayman/laravel-sms",
   "type": "library",
