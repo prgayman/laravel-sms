@@ -43,7 +43,6 @@ class LogDriver extends Driver
             "message" => $this->getMessage(),
         ];
         $response = $this->logger->debug($this->getEntityString($request));
-
         return new SmsDriverResponse($request, $response, true);
     }
 

@@ -35,7 +35,7 @@ class SmsDriverResponse
     public function __construct(array $request, $response, bool $succeeded = false, ?string $message = null)
     {
         $this->request = $request;
-        $this->response = $request;
+        $this->response = $response;
         $this->succeeded = $succeeded;
         $this->message = $message;
     }

@@ -27,7 +27,7 @@ return [
     | sending an sms. You will specify which one you are using for your
     | drivers below. You are free to add additional drivers as required.
     |
-    | Supported: log,array,jawal_sms
+    | Supported: log,array,jawal_sms,taqnyat,nexmo,twilio
     |
     */
     "drivers" => [

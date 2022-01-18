@@ -95,6 +95,12 @@ class JawalSmsClient
                 case "108":
                     $message = "Missing sender name";
                     break;
+                case "1011":
+                    $message = "There is a wrong content in the link";
+                    break;
+                case "11":
+                    $message = "You have not a permission to or your account info is incorrect";
+                    break;
                 default:
                     $message = "Error Unknown";
                     break;

@@ -22,7 +22,7 @@ class SmsTest extends TestCase
             ->message("New Message")
             ->send();
 
-        $this->assertNotNull($response);
+        $this->assertTrue($response->successful());
     }
 
     public function testSendSingleMessageWithSelectDriver()
@@ -33,6 +33,71 @@ class SmsTest extends TestCase
             ->message("New Message")
             ->send();
 
-        $this->assertNotNull($response);
+        $this->assertTrue($response->successful());
+    }
+
+    public function testGetTo()
+    {
+        $phone = "+9627900000000";
+        Sms::to($phone);
+
+        $this->assertEquals(Sms::getTo(), $phone);
+    }
+
+    public function testGetFrom()
+    {
+        $from = "Sender name";
+        Sms::from($from);
+
+        $this->assertEquals(Sms::getFrom(), $from);
+    }
+
+    public function testGetMessage()
+    {
+        $message = "Test new message";
+        Sms::message($message);
+
+        $this->assertEquals(Sms::getMessage(), $message);
+    }
+
+
+    public function testRequestDataWithDefaultDriver()
+    {
+        $to = "+962792994123";
+        $from = "SenderName";
+        $message = "Test new message";
+        $request = Sms::from($from)->to($to)->message($message)->send()->getRequest();
+
+        $this->assertEquals($request['message'], $message);
+        $this->assertEquals($request['from'], $from);
+        $this->assertEquals($request['to'], $to);
+    }
+
+    public function testRequestDataWithSekectDriver()
+    {
+        $to = "+962792994123";
+        $from = "SenderName";
+        $message = "Test new message";
+        $request = Sms::driver('array')->from($from)->to($to)->message($message)->send()->getRequest();
+
+        $this->assertEquals($request['message'], $message);
+        $this->assertEquals($request['from'], $from);
+        $this->assertEquals($request['to'], $to);
+    }
+
+
+    public function testCheckUseDefaultSenderName()
+    {
+        $senderName = "Sender Name";
+        $this->app['config']->set("sms.drivers.twilio", [
+            ...$this->app['config']->get("sms.drivers.twilio"),
+            "sender" => $senderName,
+            "sid" => "sid",
+            "token" => "token"
+        ]);
+
+        $driver =  Sms::driver("twilio");
+
+        $this->assertEquals($driver->getFrom(), $senderName);
     }
 }

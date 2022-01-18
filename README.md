@@ -310,6 +310,11 @@ $histories = smsHistory()
 ->get();
 ```
 
+## Testing
+
+```bash
+composer test
+```
 
 ## Licence
 

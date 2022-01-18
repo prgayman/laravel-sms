@@ -28,7 +28,6 @@ class ArrayDriver extends Driver
     public function send(): SmsDriverResponse
     {
         $request = [
-            "driver"  => (string) __CLASS__,
             "from"    => $this->getFrom(),
             "to"      => $this->getTo(),
             "message" => $this->getMessage()
