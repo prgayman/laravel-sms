@@ -36,7 +36,7 @@ class SmsTest extends TestCase
         $this->assertTrue($response->successful());
     }
 
-    public function testfailedSendMessage()
+    public function testFailedSendMessage()
     {
         $this->app['config']->set("sms.drivers.twilio", [
             ...$this->app['config']->get("sms.drivers.twilio"),
