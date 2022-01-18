@@ -3,8 +3,8 @@
 namespace Prgayman\Sms\Clients;
 
 use Illuminate\Support\Facades\Http;
-use Prgayman\Sms\Exceptions\ClientException;
 use \Illuminate\Http\Client\Response;
+use Prgayman\Sms\SmsDriverResponse;
 
 class JawalSmsClient
 {
@@ -46,37 +46,37 @@ class JawalSmsClient
      * @param string $message
      * @param string $mobile
      * 
-     * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return \Illuminate\Http\Client\Response
+     * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function sendSingleSms(string $message, string $sender, string $mobile)
+    public function sendSingleSms(string $message, string $sender, string $mobile): SmsDriverResponse
     {
-        $response = Http::post("$this->baseUrl/httpSmsProvider.aspx", [
+        $request = [
             "username" => $this->username,
             "password" => $this->password,
             "unicode"  => $this->unicode,
             "sender"   => $sender,
             "message"  => $message,
             'mobile'   => str_replace('+', '', $mobile),
-        ]);
+        ];
 
-        $this->successful($response);
+        $response = Http::post("$this->baseUrl/httpSmsProvider.aspx", $request);
 
-        return $response;
+        $errorMessage = $this->getErrorMessage($response);
+
+        return new SmsDriverResponse(
+            $request,
+            $response->body(),
+            is_null($errorMessage) ? true : false,
+            $errorMessage
+        );
     }
 
-    /**
-     * Get error message
-     * 
-     * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return bool
-     */
-    private function successful(Response $response): bool
+    private function getErrorMessage(Response $response)
     {
         if ($response->successful()) {
             switch ((int) str_replace(" ", "", $response->body())) {
                 case "0":
-                    return true;
+                    return null;
                 case "101":
                     $message = "Parameter are missing";
                     break;
@@ -103,6 +103,6 @@ class JawalSmsClient
             $message = "Error Unknown";
         }
 
-        throw new ClientException($message);
+        return $message;
     }
 }

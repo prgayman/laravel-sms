@@ -2,6 +2,8 @@
 
 namespace Prgayman\Sms\Contracts;
 
+use Prgayman\Sms\SmsDriverResponse;
+
 interface DriverInterface
 {
     /**
@@ -52,8 +54,7 @@ interface DriverInterface
     /**
      * Send Message
      * 
-     * @throws Prgayman\Sms\Exceptions\DriverException
-     * @return mixed
+     * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function send();
+    public function send(): SmsDriverResponse;
 }

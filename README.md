@@ -86,12 +86,6 @@ You can publish the config file with this artisan command:
 |log|[Click](docs/drivers_configuration.md#log)
 
 
-
-## Exceptions
-- ```Prgayman\Sms\Exceptions\ClientException```
-- ```Prgayman\Sms\Exceptions\DriverException```
-
-
 ## Events
 - ```\Prgayman\Sms\Events\MessageSending::class```
 - ```\Prgayman\Sms\Events\MessageSent::class```
@@ -148,11 +142,26 @@ $message = "Test Send Message";
 /**
  * Send using default driver sms
  * 
- * @return mixed depends on driver
+ * @return \Prgayman\Sms\SmsDriverResponse
  */
 $response = Sms::to($to)->from($from)->message($message)->send(); 
 
+# Get Message
+$response->getMessage();
+
+# Get Request
+$response->getRequest();
+
+# Get driver response
+$response->getResponse();
+
+# Check is successfuly send sms message
+$response->successful();
+
+# Check is failed send sms message
+$response->failed();
 ```
+
 Send using select driver sms
 ```php
 Sms::driver("array")->to($to)->from($from)->message($message)->send();
@@ -178,7 +187,7 @@ sms("array")->to($to)->from($from)->message($message)->send();
 
       # You not need to run events or store history 
       # package automatically run all events and store history
-      public function send()
+      public function send() : \Prgayman\Sms\SmsDriverResponse
       {
           $to = $this->getTo();
           $from = $this->getFrom();

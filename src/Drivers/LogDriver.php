@@ -2,6 +2,7 @@
 
 namespace Prgayman\Sms\Drivers;
 
+use Prgayman\Sms\SmsDriverResponse;
 use Psr\Log\LoggerInterface;
 
 class LogDriver extends Driver
@@ -34,19 +35,24 @@ class LogDriver extends Driver
         return $this->logger;
     }
 
-    /** @return bool */
-    public function send()
+    public function send(): SmsDriverResponse
     {
-        $this->logger->debug($this->getEntityString());
-        return true;
+        $request = [
+            "from" => $this->getFrom(),
+            "to" => $this->getTo(),
+            "message" => $this->getMessage(),
+        ];
+        $response = $this->logger->debug($this->getEntityString($request));
+
+        return new SmsDriverResponse($request, $response, true);
     }
 
     /**
      * Get a loggable string 
      * @return string
      */
-    protected function getEntityString()
+    protected function getEntityString(array $request)
     {
-        return (string) __CLASS__ . PHP_EOL . "[From]: {$this->getFrom()}" . PHP_EOL . "[To]: {$this->getTo()}" . PHP_EOL . "[Message]: {$this->getMessage()}";
+        return (string) __CLASS__ . PHP_EOL . "[From]: {$request['from']}" . PHP_EOL . "[To]: {$request['to']}" . PHP_EOL . "[Message]: {$request['message']}";
     }
 }

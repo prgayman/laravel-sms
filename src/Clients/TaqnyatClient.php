@@ -3,8 +3,8 @@
 namespace Prgayman\Sms\Clients;
 
 use Illuminate\Support\Facades\Http;
-use Prgayman\Sms\Exceptions\ClientException;
 use \Illuminate\Http\Client\Response;
+use Prgayman\Sms\SmsDriverResponse;
 
 class TaqnyatClient
 {
@@ -33,10 +33,9 @@ class TaqnyatClient
      * @param string $message
      * @param string $mobile
      * 
-     * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return \Illuminate\Http\Client\Response
+     * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function sendSingleSms(string $message, string $sender, string $mobile): Response
+    public function sendSingleSms(string $message, string $sender, string $mobile): SmsDriverResponse
     {
         return $this->send($message, [$mobile], $sender);
     }
@@ -48,24 +47,27 @@ class TaqnyatClient
      * @param array $recipients
      * @param string $sender
      * 
-     * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return \Illuminate\Http\Client\Response
+     * @return \Prgayman\Sms\SmsDriverResponse
      */
-    private function send(string $message, array $recipients, string $sender): Response
+    private function send(string $message, array $recipients, string $sender): SmsDriverResponse
     {
+        $request = [
+            'recipients' => $recipients,
+            'sender' => $sender,
+            'body' => $message,
+        ];
+
         $response = Http::withHeaders([
             'Authorization' => "Bearer {$this->authorization}",
         ])
-            ->post("{$this->baseUrl}/v1/messages", [
-                'recipients' => $recipients,
-                'sender' => $sender,
-                'body' => $message,
-            ]);
+            ->post("{$this->baseUrl}/v1/messages", $request);
 
-        if ($response->failed()) {
-            throw new ClientException("{$response->json('message', 'Send failed')}, status code is [{$response->status()}]");
-        }
 
-        return $response;
+        return new SmsDriverResponse(
+            $request,
+            $response->json(),
+            $response->successful(),
+            $response->json('message')
+        );
     }
 }

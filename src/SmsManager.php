@@ -46,9 +46,9 @@ class SmsManager
      * Get a Driver instance by name.
      *
      * @param string|null  $name
-     * @return \Prgayman\Sms\Contracts\DriverInterface
+     * @return \Prgayman\Sms\SmsDriver
      */
-    public function driver($name = null)
+    public function driver($name = null): SmsDriver
     {
         $name = $name ?: $this->getDefaultDriver();
 
@@ -59,9 +59,9 @@ class SmsManager
      * Attempt to get the driver from the local cache.
      *
      * @param  string  $name
-     * @return \Prgayman\Sms\Contracts\DriverInterface
+     * @return \Prgayman\Sms\SmsDriver
      */
-    protected function get($name)
+    protected function get($name): SmsDriver
     {
         return $this->drivers[$name] ?? $this->resolve($name);
     }
@@ -74,7 +74,7 @@ class SmsManager
      *
      * @throws \InvalidArgumentException
      */
-    protected function resolve($name)
+    protected function resolve($name): SmsDriver
     {
         $config = $this->configurationFor($name);
 

@@ -3,6 +3,7 @@
 namespace Prgayman\Sms\Drivers;
 
 use Prgayman\Sms\Clients\JawalSmsClient;
+use Prgayman\Sms\SmsDriverResponse;
 
 class JawalSmsDriver extends Driver
 {
@@ -36,12 +37,7 @@ class JawalSmsDriver extends Driver
         return new JawalSmsClient($this->username, $this->password);
     }
 
-    /** 
-     * 
-     * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return \Illuminate\Http\Client\Response 
-     */
-    public function send()
+    public function send(): SmsDriverResponse
     {
         return $this->client()->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
     }

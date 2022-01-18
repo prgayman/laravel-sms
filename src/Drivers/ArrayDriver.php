@@ -4,6 +4,7 @@ namespace Prgayman\Sms\Drivers;
 
 use Illuminate\Support\Collection;
 use Prgayman\Sms\Drivers\Driver;
+use Prgayman\Sms\SmsDriverResponse;
 
 class ArrayDriver extends Driver
 {
@@ -24,17 +25,18 @@ class ArrayDriver extends Driver
         $this->messages = new Collection;
     }
 
-    /** @return bool */
-    public function send()
+    public function send(): SmsDriverResponse
     {
-        $this->messages[] = [
+        $request = [
             "driver"  => (string) __CLASS__,
             "from"    => $this->getFrom(),
             "to"      => $this->getTo(),
             "message" => $this->getMessage()
         ];
 
-        return true;
+        $this->messages[] = $request;
+
+        return new SmsDriverResponse($request, null, true);
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace Prgayman\Sms\Drivers;
 
+use Exception;
+use Prgayman\Sms\SmsDriverResponse;
+
 class NexmoDriver extends Driver
 {
 
@@ -27,12 +30,19 @@ class NexmoDriver extends Driver
         return app('Nexmo\Client');
     }
 
-    public function send()
+    public function send(): SmsDriverResponse
     {
-        return $this->client()->message()->send([
+        $request = [
             'to' => $this->getTo(),
             'from' => $this->getFrom(),
             'text' => $this->getMessage(),
-        ]);
+        ];
+
+        try {
+            $response =  $this->client()->message()->send($request);
+            return new SmsDriverResponse($request, $response, true);
+        } catch (Exception $e) {
+            return new SmsDriverResponse($request, null, false, $e->getMessage());
+        }
     }
 }

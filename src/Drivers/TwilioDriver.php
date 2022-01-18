@@ -2,6 +2,8 @@
 
 namespace Prgayman\Sms\Drivers;
 
+use Exception;
+use Prgayman\Sms\SmsDriverResponse;
 use Twilio\Rest\Client;
 
 class TwilioDriver extends Driver
@@ -38,16 +40,26 @@ class TwilioDriver extends Driver
         return new Client($this->sid, $this->token);
     }
 
-    public function send()
+    public function send(): SmsDriverResponse
     {
-        return  $this->client()
-            ->messages
-            ->create(
-                $this->getTo(),
-                [
-                    'from' => $this->getFrom(),
-                    'body' => $this->getMessage(),
-                ]
-            );
+        $request = [
+            "to" => $this->getTo(),
+            'from' => $this->getFrom(),
+            'body' => $this->getMessage(),
+        ];
+        try {
+            $response =  $this->client()
+                ->messages
+                ->create(
+                    $request['to'],
+                    [
+                        'from' => $request['from'],
+                        'body' => $request['body']
+                    ]
+                );
+            return new SmsDriverResponse($request, $response, true);
+        } catch (Exception $e) {
+            return new SmsDriverResponse($request, null, false, $e->getMessage());
+        }
     }
 }

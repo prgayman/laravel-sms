@@ -2,10 +2,8 @@
 
 namespace Prgayman\Sms;
 
-use Exception;
 use Illuminate\Support\Str;
 use Prgayman\Sms\Contracts\DriverInterface;
-use Prgayman\Sms\Exceptions\DriverException;
 use Prgayman\Sms\Models\SmsHistory;
 use Illuminate\Contracts\Events\Dispatcher;
 
@@ -113,26 +111,24 @@ class SmsDriver implements DriverInterface
     /**
      * Send Message
      * 
-     * @throws Prgayman\Sms\Exceptions\DriverException
-     * @return mixed
+     * @return \Prgayman\sms\SmsDriverResponse
      */
-    public function send()
+    public function send(): SmsDriverResponse
     {
         $data = $this->payload();
-        try {
-            $this->dispatchSendingEvent($data);
+        $this->dispatchSendingEvent($data);
 
-            $response = $this->driver->send();
+        $response = $this->driver->send();
 
-            $this->addHistory($data, SmsHistory::SUCCESSED);
+        if ($response->successful()) {
             $this->dispatchSentEvent($data);
-
-            return $response;
-        } catch (Exception $e) {
-            $this->addHistory($data, SmsHistory::FAILED);
-            $this->dispatchFailedEvent($data, $e->getMessage());
-            throw new DriverException($e->getMessage());
+            $this->addHistory($data,  SmsHistory::SUCCESSED);
+        } else {
+            $this->dispatchFailedEvent($data, $response->getMessage());
+            $this->addHistory($data,  SmsHistory::FAILED);
         }
+
+        return $response;
     }
 
     /**

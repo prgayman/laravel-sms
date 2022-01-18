@@ -3,6 +3,7 @@
 namespace Prgayman\Sms\Drivers;
 
 use Prgayman\Sms\Clients\TaqnyatClient;
+use Prgayman\Sms\SmsDriverResponse;
 
 class TaqnyatDriver extends Driver
 {
@@ -30,12 +31,8 @@ class TaqnyatDriver extends Driver
         return new TaqnyatClient($this->authorization);
     }
 
-    /** 
-     * 
-     * @throws \Prgayman\Sms\Exceptions\ClientException
-     * @return \Illuminate\Http\Client\Response 
-     */
-    public function send()
+
+    public function send(): SmsDriverResponse
     {
         return $this->client()->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
     }
