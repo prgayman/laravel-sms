@@ -36,6 +36,23 @@ class SmsTest extends TestCase
         $this->assertTrue($response->successful());
     }
 
+    public function testfailedSendMessage()
+    {
+        $this->app['config']->set("sms.drivers.twilio", [
+            ...$this->app['config']->get("sms.drivers.twilio"),
+            "sid" => "sid",
+            "token" => "token"
+        ]);
+
+        $response = Sms::driver("twilio")
+            ->to("+962792994123")
+            ->from("SenderName")
+            ->message("New Message")
+            ->send();
+
+        $this->assertTrue($response->failed());
+    }
+
     public function testGetTo()
     {
         $phone = "+9627900000000";
@@ -89,6 +106,7 @@ class SmsTest extends TestCase
     public function testCheckUseDefaultSenderName()
     {
         $senderName = "Sender Name";
+
         $this->app['config']->set("sms.drivers.twilio", [
             ...$this->app['config']->get("sms.drivers.twilio"),
             "sender" => $senderName,
