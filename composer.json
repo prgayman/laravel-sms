@@ -37,6 +37,16 @@
       "src/helpers.php"
     ]
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Prgayman\\Sms\\Test\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "orchestra/testbench": "^6.24",
+    "nunomaduro/collision": "^5.10"
+  },
   "extra": {
     "laravel": {
       "providers": [
@@ -46,6 +56,12 @@
         "Sms": "Prgayman\\Sms\\Facades\\Sms"
       }
     }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "post-autoload-dump": [
+      "@php ./vendor/bin/testbench package:discover --ansi"
+    ]
   },
   "minimum-stability": "dev",
   "prefer-stable": true

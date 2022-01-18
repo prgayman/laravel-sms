@@ -24,7 +24,7 @@ class ArrayDriver extends Driver
         $this->messages = new Collection;
     }
 
-    /** @return void */
+    /** @return bool */
     public function send()
     {
         $this->messages[] = [
@@ -33,6 +33,8 @@ class ArrayDriver extends Driver
             "to"      => $this->getTo(),
             "message" => $this->getMessage()
         ];
+
+        return true;
     }
 
     /**

@@ -34,10 +34,11 @@ class LogDriver extends Driver
         return $this->logger;
     }
 
-    /** @return void */
+    /** @return bool */
     public function send()
     {
-        return $this->logger->debug($this->getEntityString());
+        $this->logger->debug($this->getEntityString());
+        return true;
     }
 
     /**

@@ -146,6 +146,7 @@ class SmsDriver implements DriverInterface
     {
         if (SmsConfig::history("enabled", false) && in_array($status, SmsConfig::history("statuses", []))) {
             $data['id'] = Str::uuid()->toString();
+            $data['status'] = $status;
             $history = app(SmsHistory::class)::create($data);
             return $history ? true : false;
         }
