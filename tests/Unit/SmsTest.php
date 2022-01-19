@@ -90,7 +90,7 @@ class SmsTest extends TestCase
         $this->assertEquals($request['to'], $to);
     }
 
-    public function testRequestDataWithSekectDriver()
+    public function testRequestDataWithSelectDriver()
     {
         $to = "+962792994123";
         $from = "SenderName";
@@ -117,5 +117,23 @@ class SmsTest extends TestCase
         $driver =  Sms::driver("twilio");
 
         $this->assertEquals($driver->getFrom(), $senderName);
+    }
+
+
+    public function testSendWithCustomDriver()
+    {
+
+        $this->app['config']->set("sms.drivers.custom_driver", [
+            "driver" => "custom_driver",
+            "handler" => \Prgayman\Sms\Test\Drivers\CustomDriver::class
+        ]);
+
+        $response =  Sms::driver("custom_driver")
+            ->to("+962792994123")
+            ->from("Sender Name")
+            ->message("Test new message")
+            ->send();
+
+        $this->assertTrue($response->successful());
     }
 }
