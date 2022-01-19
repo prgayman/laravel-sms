@@ -182,18 +182,28 @@ sms("array")->to($to)->from($from)->message($message)->send();
 
   ```php
   use Prgayman\Sms\Drivers\Driver;
+  use Prgayman\Sms\SmsDriverResponse;
 
   class CustomDriver extends Driver {
 
       # You not need to run events or store history 
       # package automatically run all events and store history
-      public function send() : \Prgayman\Sms\SmsDriverResponse
+      public function send() : SmsDriverResponse
       {
-          $to = $this->getTo();
-          $from = $this->getFrom();
-          $message = $this->getMessage();
+          
+        $request = [
+            "to" => $this->getTo(),
+            'from' => $this->getFrom(),
+            'body' => $this->getMessage(),
+        ];
 
-          # Handler send message
+        try {
+            # Handler send message
+            $response = null;
+            return new SmsDriverResponse($request, $response, true);
+        } catch (\Exception $e) {
+            return new SmsDriverResponse($request, null, false, $e->getMessage());
+        }
       }
 
   }
