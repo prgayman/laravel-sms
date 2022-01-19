@@ -116,7 +116,7 @@ class SmsManager
      */
     protected function configurationFor($name)
     {
-        return $this->app['config']["sms.drivers.{$name}"];
+        return SmsConfig::config("drivers.{$name}");
     }
 
     /**
@@ -126,7 +126,7 @@ class SmsManager
      */
     public function getDefaultDriver()
     {
-        return $this->app['config']['sms.default'];
+        return SmsConfig::config("default");
     }
 
     /**
@@ -137,7 +137,7 @@ class SmsManager
      */
     public function setDefaultDriver($name)
     {
-        $this->app['config']['sms.default'] = $name;
+        SmsConfig::set("default", $name);
     }
 
     /**

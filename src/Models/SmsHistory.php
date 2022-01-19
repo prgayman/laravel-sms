@@ -45,29 +45,4 @@ class SmsHistory extends Model
 
         return parent::getTable();
     }
-
-    public function scopeStatus($query, $status)
-    {
-        $query->where("status", $status);
-    }
-
-    public function scopeDriver($query, $driver)
-    {
-        $query->where("driver", $driver);
-    }
-
-    public function scopeDriverName($query, $driverName)
-    {
-        $query->where("driver_name", $driverName);
-    }
-
-    public function scopeFrom($query, $from)
-    {
-        $query->where("from", $from);
-    }
-
-    public function scopeTo($query, $to)
-    {
-        $query->where("to", $to);
-    }
 }

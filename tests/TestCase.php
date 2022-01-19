@@ -33,7 +33,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageAliases($app)
     {
         return [
-            'Sms' => \Prgayman\Sms\Facades\Sms::class
+            'Sms' => \Prgayman\Sms\Facades\Sms::class,
+            'SmsHistory' => \Prgayman\Sms\Facades\SmsHistory::class,
         ];
     }
 

@@ -84,7 +84,7 @@ return [
     "history" => [
 
         /** @var bool */
-        'enabled' => env('SMS_HISTORY_ENABLED', true),
+        'enabled' => env('SMS_HISTORY_ENABLED', false),
 
         /** 
          * Enable history for this statuses

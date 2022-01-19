@@ -2,23 +2,17 @@
 
 namespace Prgayman\Sms;
 
-use Illuminate\Support\Arr;
-
 class SmsConfig
 {
-    private static $config;
-
-    public static function all()
-    {
-        if (is_null(self::$config)) {
-            self::$config = config('sms');
-        }
-        return self::$config;
-    }
 
     public static function config($key, $default = null)
     {
-        return Arr::get(self::all(), $key, $default);
+        return config("sms.{$key}", $default);
+    }
+
+    public static function set($key, $value)
+    {
+        return config()->set("sms.{$key}", $value);
     }
 
     public static function history($key, $default = null)

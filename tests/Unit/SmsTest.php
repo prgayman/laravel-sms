@@ -3,6 +3,7 @@
 namespace Prgayman\Sms\Test\Unit;
 
 use Prgayman\Sms\Facades\Sms;
+use Prgayman\Sms\SmsConfig;
 use Prgayman\Sms\Test\TestCase;
 
 class SmsTest extends TestCase
@@ -34,23 +35,6 @@ class SmsTest extends TestCase
             ->send();
 
         $this->assertTrue($response->successful());
-    }
-
-    public function testFailedSendMessage()
-    {
-        $this->app['config']->set("sms.drivers.twilio", [
-            ...$this->app['config']->get("sms.drivers.twilio"),
-            "sid" => "sid",
-            "token" => "token"
-        ]);
-
-        $response = Sms::driver("twilio")
-            ->to("+962792994123")
-            ->from("SenderName")
-            ->message("New Message")
-            ->send();
-
-        $this->assertTrue($response->failed());
     }
 
     public function testGetTo()
@@ -102,13 +86,29 @@ class SmsTest extends TestCase
         $this->assertEquals($request['to'], $to);
     }
 
+    public function testFailedSendMessage()
+    {
+        SmsConfig::set("drivers.twilio", [
+            ...SmsConfig::config("drivers.twilio"),
+            "sid" => "sid",
+            "token" => "token"
+        ]);
+
+        $response = Sms::driver("twilio")
+            ->to("+962792994123")
+            ->from("SenderName")
+            ->message("New Message")
+            ->send();
+
+        $this->assertTrue($response->failed());
+    }
 
     public function testCheckUseDefaultSenderName()
     {
         $senderName = "Sender Name";
 
-        $this->app['config']->set("sms.drivers.twilio", [
-            ...$this->app['config']->get("sms.drivers.twilio"),
+        SmsConfig::set("drivers.twilio", [
+            ...SmsConfig::config("drivers.twilio"),
             "sender" => $senderName,
             "sid" => "sid",
             "token" => "token"
@@ -119,11 +119,9 @@ class SmsTest extends TestCase
         $this->assertEquals($driver->getFrom(), $senderName);
     }
 
-
     public function testSendWithCustomDriver()
     {
-
-        $this->app['config']->set("sms.drivers.custom_driver", [
+        SmsConfig::set("drivers.custom_driver", [
             "driver" => "custom_driver",
             "handler" => \Prgayman\Sms\Test\Drivers\CustomDriver::class
         ]);
