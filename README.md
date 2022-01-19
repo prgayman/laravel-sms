@@ -39,6 +39,7 @@ Add the facade aliases in the same file:
 ```php
 'aliases' => [
   'Sms' => Prgayman\Sms\Facades\Sms::class,
+  'SmsHistory' => Prgayman\Sms\Facades\SmsHistory::class,
 ]
 ```
 
@@ -56,6 +57,7 @@ For facades, add the following lines in the section "Create The Application" .
 
 ```php
 class_alias(\Prgayman\Sms\Facades\Sms::class, 'Sms');
+class_alias(\Prgayman\Sms\Facades\SmsHistory::class, 'SmsHistory');
 ```
 
 ## Run Migrations

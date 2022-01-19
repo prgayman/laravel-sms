@@ -54,7 +54,8 @@
         "Prgayman\\Sms\\SmsServiceProvider"
       ],
       "aliases": {
-        "Sms": "Prgayman\\Sms\\Facades\\Sms"
+        "Sms": "Prgayman\\Sms\\Facades\\Sms",
+        "SmsHistory": "Prgayman\\Sms\\Facades\\SmsHistory"
       }
     }
   },
