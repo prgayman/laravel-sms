@@ -169,6 +169,32 @@ Send using select driver sms
 Sms::driver("array")->to($to)->from($from)->message($message)->send();
 ```
 
+Send multiple messages (per message run events and store history)
+
+```php
+    $items = [
+        [
+            "to" => "+962792994123",
+            "from" => "SenderName",
+            "message" => "New message"
+        ],
+        [
+            "to" => "+962792994124",
+            "from" => "SenderName",
+            "message" => "Send Message"
+        ]
+    ];
+
+    /**
+     * @param $items must contain message, to, and from keys per item
+     * @return \Prgayman\sms\SmsDriverResponse[]
+     */
+    $response = Sms::sendArray($items); 
+
+    // Or send using helper function 
+    $response = sms()->sendArray($items); 
+```
+
 Send using helper function with default driver
 ```php
 sms()->to($to)->from($from)->message($message)->send();

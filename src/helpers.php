@@ -6,7 +6,7 @@ if (!function_exists("sms")) {
      * Helper function sms
      * 
      * @param string|null $driver
-     * @return \Prgayman\Sms\Contracts\DriverInterface
+     * @return \Prgayman\Sms\SmsDriver
      */
     function sms($driver = null)
     {
