@@ -169,7 +169,7 @@ Send using select driver sms
 Sms::driver("array")->to($to)->from($from)->message($message)->send();
 ```
 
-Send multiple messages (per message run events and store history)
+Send multiple messages (run events and store history per message)
 
 ```php
     $items = [
