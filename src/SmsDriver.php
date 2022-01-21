@@ -132,6 +132,28 @@ class SmsDriver implements DriverInterface
     }
 
     /**
+     * Send multiple messages
+     * 
+     * @param $items must contain message, to, and from keys per item
+     * @return \Prgayman\sms\SmsDriverResponse[]
+     */
+    public function sendArray(array $items)
+    {
+        $responses = [];
+
+        foreach ($items as $index => $item) {
+            if (isset($item['message']) && isset($item['to'])) {
+                $responses[$index] = $this->to($item['to'])
+                    ->from($item['from'] ?? null)
+                    ->message($item['message'])
+                    ->send();
+            }
+        }
+
+        return $responses;
+    }
+
+    /**
      * Add row to history if history enabled
      * 
      * @param array $data

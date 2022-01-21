@@ -2,7 +2,10 @@
 
 namespace Prgayman\Sms;
 
-class SmsDriverResponse
+use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
+
+class SmsDriverResponse implements Arrayable, JsonSerializable
 {
 
     /**
@@ -88,5 +91,19 @@ class SmsDriverResponse
     public function failed(): bool
     {
         return !$this->successful();
+    }
+
+    public function toArray()
+    {
+        return [
+            "request" => $this->request,
+            "response" => $this->response,
+            "successful" => $this->succeeded
+        ];
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
     }
 }
