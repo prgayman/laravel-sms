@@ -17,7 +17,7 @@ Or you can add it directly in your composer.json file:
 ```json
 {
   "require": {
-    "prgayman/laravel-sms": "1.0.0"
+    "prgayman/laravel-sms": "1.0.1"
   }
 }
 ```
