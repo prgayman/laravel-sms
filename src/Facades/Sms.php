@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string getFrom()
  * @method static string getMessage()
  * @method static \Prgayman\Sms\SmsDriverResponse send()
- * @method static \Prgayman\Sms\SmsDriverResponse sendArray(array $messages)
+ * @method static \Prgayman\Sms\SmsDriverResponse[] sendArray(array $messages)
  * 
  * @see \Prgayman\Sms\SmsManager
  */

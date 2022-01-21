@@ -4,6 +4,7 @@ namespace Prgayman\Sms\Test\Unit;
 
 use Prgayman\Sms\Facades\Sms;
 use Prgayman\Sms\SmsConfig;
+use Prgayman\Sms\SmsDriverResponse;
 use Prgayman\Sms\Test\TestCase;
 
 class SmsTest extends TestCase
@@ -133,5 +134,59 @@ class SmsTest extends TestCase
             ->send();
 
         $this->assertTrue($response->successful());
+    }
+
+    public function testSendArray()
+    {
+
+        $items = [
+            [
+                "to" => "+962792994123",
+                "from" => "SenderName",
+                "message" => "New message"
+            ],
+            [
+                "to" => "+962792994124",
+                "from" => "SenderName",
+                "message" => "Send Message"
+            ]
+        ];
+
+        $responses = Sms::sendArray($items);
+
+        $successfulMessages = array_map(function (SmsDriverResponse $response) {
+            return $response->successful();
+        }, $responses);
+
+        $this->assertCount(2, $successfulMessages);
+    }
+
+    public function testSendArrayWithOneMessageFailed()
+    {
+
+        $items = [
+            [
+                "to" => "+962792994123",
+                "from" => "SenderName",
+                "message" => "New message"
+            ],
+            [
+                "to" => "+962792994124",
+                "from" => "SenderName",
+                "message" => "Send Message"
+            ],
+            [
+                "from" => "SenderName",
+                "message" => "Send Message"
+            ]
+        ];
+
+        $responses = Sms::sendArray($items);
+
+        $successfulMessages = array_map(function (SmsDriverResponse $response) {
+            return $response->successful();
+        }, $responses);
+
+        $this->assertCount(2, $successfulMessages);
     }
 }
