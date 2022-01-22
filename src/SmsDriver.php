@@ -52,6 +52,8 @@ class SmsDriver implements DriverInterface
      */
     public function to(array|string $to): SmsDriver
     {
+        $to = is_array($to) && count($to) == 1 ? $to[0] : $to;
+
         $this->driver->to($to);
         return $this;
     }
@@ -119,7 +121,7 @@ class SmsDriver implements DriverInterface
     {
         $data = $this->payload();
 
-        if (is_array($data["to"]) && count($data["to"]) > 1 && !($this->driver instanceof DriverMultipleContactsInterface)) {
+        if (is_array($data["to"]) && !($this->driver instanceof DriverMultipleContactsInterface)) {
             throw new Exception("Driver [{$this->name}] can't supported send to multiple contacts.");
         }
 
@@ -169,7 +171,7 @@ class SmsDriver implements DriverInterface
      */
     protected function addHistory(array $data, string $status): bool
     {
-        if (SmsConfig::history("enabled", false) && in_array($status, SmsConfig::history("statuses", []))) {
+        if (SmsConfig::history("enabled", false) && in_array($status, SmsConfig::history("statuses", [])) && !is_array($data['to'])) {
             $data['id'] = Str::uuid()->toString();
             $data['status'] = $status;
             $history = app(SmsHistory::class)::create($data);
