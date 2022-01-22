@@ -27,10 +27,37 @@ class SmsTest extends TestCase
         $this->assertTrue($response->successful());
     }
 
+    public function testSendMultipleContactsWithDefaultDriver()
+    {
+        $response = Sms::to([
+            "+962792994123",
+            "+962792994124",
+        ])
+            ->from("SenderName")
+            ->message("New Message")
+            ->send();
+
+        $this->assertTrue($response->successful());
+    }
+
     public function testSendSingleMessageWithSelectDriver()
     {
         $response = Sms::driver("array")
             ->to("+962792994123")
+            ->from("SenderName")
+            ->message("New Message")
+            ->send();
+
+        $this->assertTrue($response->successful());
+    }
+
+    public function testSendMultipleContactsWithSelectDriver()
+    {
+        $response = Sms::driver("array")
+            ->to([
+                "+962792994123",
+                "+962792994124",
+            ])
             ->from("SenderName")
             ->message("New Message")
             ->send();
