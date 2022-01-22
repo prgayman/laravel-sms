@@ -73,19 +73,19 @@ You can publish the config file with this artisan command:
     $ php artisan vendor:publish --tag=laravel-sms-config
 
 ## Available SMS Providers
-|Provider|URL|Tested|Config
-|:--------- | :-----------------: | :------: | :------: |
-|JawalSms|https://www.jawalsms.net/|Yes|[Click](docs/drivers_configuration.md#jawalsms)
-|Taqnyat|https://www.taqnyat.sa/|Yes|[Click](docs/drivers_configuration.md#taqnyat)
-|Nexmo|https://www.nexmo.com/|Yes|[Click](docs/drivers_configuration.md#nexmo)
-|Twilio|https://www.twilio.com/|Yes|[Click](docs/drivers_configuration.md#twilio)
+|Provider|URL|Tested|Multiple contacts|Config
+|:--------- | :-----------------: | :------:| :------: | :------: |
+|JawalSms|https://www.jawalsms.net/|Yes|Yes|[Click](docs/drivers_configuration.md#jawalsms)
+|Taqnyat|https://www.taqnyat.sa/|Yes|Yes|[Click](docs/drivers_configuration.md#taqnyat)
+|Nexmo|https://www.nexmo.com/|Yes|No|[Click](docs/drivers_configuration.md#nexmo)
+|Twilio|https://www.twilio.com/|Yes|No|[Click](docs/drivers_configuration.md#twilio)
 
 
 ## Available SMS Drivers local development
-|Provider|Config
-|:--------- | :------: |
-|array|-
-|log|[Click](docs/drivers_configuration.md#log)
+|Provider|Multiple contacts|Config
+|:--------- | :------: | :------: |
+|array|-|Yes
+|log|Yes|[Click](docs/drivers_configuration.md#log)
 
 
 ## Events
@@ -112,7 +112,7 @@ SMS_DRIVER=log
 Prgayman\Sms\Facades\Sms::setDefaultDriver("array");
 ```
 
-### Enable sms history using database
+### Enable sms history using database (send multiple contacts is not support store history)
 
 - Enable the key ```SMS_HISTORY_ENABLED``` in ```.env``` file
 
@@ -168,7 +168,19 @@ Send using select driver sms
 ```php
 Sms::driver("array")->to($to)->from($from)->message($message)->send();
 ```
+Send multiple contacts
+```php
+// please sure driver is support send multiple contacts
+Sms::to([
+  "+962792994123",
+  "+962792994124",
+  "+962792994125",
+])
+->from($from)
+->message($message)
+->send();
 
+```
 Send multiple messages (run events and store history per message)
 
 ```php
@@ -207,12 +219,14 @@ sms("array")->to($to)->from($from)->message($message)->send();
 ### Create custom driver
 
 - Create class extends from ```\Prgayman\Sms\Drivers\Driver``` and handler send function
+- if driver support send multiple contacts please implements from ```Prgayman\Sms\Contracts\DriverMultipleContactsInterface```
 
   ```php
   use Prgayman\Sms\Drivers\Driver;
   use Prgayman\Sms\SmsDriverResponse;
+  use Prgayman\Sms\Contracts\DriverMultipleContactsInterface;
 
-  class CustomDriver extends Driver {
+  class CustomDriver extends Driver implements DriverMultipleContactsInterface {
 
       # You not need to run events or store history 
       # package automatically run all events and store history
