@@ -35,7 +35,7 @@ class NexmoDriver extends Driver
         $to = $this->getTo();
 
         $request = [
-            'to'   => is_array($to) ? implode(",", $to) : $to,
+            'to'   => is_array($to) ? $to[0] : $to,
             'from' => $this->getFrom(),
             'text' => $this->getMessage(),
         ];

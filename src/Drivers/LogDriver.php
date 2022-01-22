@@ -2,10 +2,11 @@
 
 namespace Prgayman\Sms\Drivers;
 
+use Prgayman\Sms\Contracts\DriverMultipleContactsInterface;
 use Prgayman\Sms\SmsDriverResponse;
 use Psr\Log\LoggerInterface;
 
-class LogDriver extends Driver
+class LogDriver extends Driver implements DriverMultipleContactsInterface
 {
     /**
      * The Logger instance.
@@ -37,11 +38,14 @@ class LogDriver extends Driver
 
     public function send(): SmsDriverResponse
     {
+        $to = $this->getTo();
+
         $request = [
-            "from" => $this->getFrom(),
-            "to" => $this->getTo(),
+            "from"    => $this->getFrom(),
+            "to"      => is_array($to) ? implode(",", $to) : $to,
             "message" => $this->getMessage(),
         ];
+
         $response = $this->logger->debug($this->getEntityString($request));
         return new SmsDriverResponse($request, $response, true);
     }

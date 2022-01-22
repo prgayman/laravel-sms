@@ -3,10 +3,11 @@
 namespace Prgayman\Sms\Drivers;
 
 use Illuminate\Support\Collection;
+use Prgayman\Sms\Contracts\DriverMultipleContactsInterface;
 use Prgayman\Sms\Drivers\Driver;
 use Prgayman\Sms\SmsDriverResponse;
 
-class ArrayDriver extends Driver
+class ArrayDriver extends Driver implements DriverMultipleContactsInterface
 {
     /**
      * The collection of Sms Messages.
