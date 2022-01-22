@@ -32,8 +32,10 @@ class NexmoDriver extends Driver
 
     public function send(): SmsDriverResponse
     {
+        $to = $this->getTo();
+
         $request = [
-            'to' => $this->getTo(),
+            'to'   => is_array($to) ? implode(",", $to) : $to,
             'from' => $this->getFrom(),
             'text' => $this->getMessage(),
         ];

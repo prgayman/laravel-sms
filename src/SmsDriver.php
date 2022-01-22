@@ -2,10 +2,12 @@
 
 namespace Prgayman\Sms;
 
+use Exception;
 use Illuminate\Support\Str;
 use Prgayman\Sms\Contracts\DriverInterface;
 use Prgayman\Sms\Models\SmsHistory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Prgayman\Sms\Contracts\DriverMultipleContactsInterface;
 
 class SmsDriver implements DriverInterface
 {
@@ -45,22 +47,22 @@ class SmsDriver implements DriverInterface
     /**
      * Set to 
      * 
-     * @param string $mobile
+     * @param array|string $to
      * @return $this
      */
-    public function to(string $mobile): SmsDriver
+    public function to(array|string $to): SmsDriver
     {
-        $this->driver->to($mobile);
+        $this->driver->to($to);
         return $this;
     }
 
     /**
      * Set from (sender name) 
      * 
-     * @param string $senderName
+     * @param string|null $senderName
      * @return $this
      */
-    public function from(string $senderName): SmsDriver
+    public function from(string|null $senderName): SmsDriver
     {
         $this->driver->from($senderName);
         return $this;
@@ -81,9 +83,9 @@ class SmsDriver implements DriverInterface
     /**
      * Get to 
      * 
-     * @return string
+     * @return array|string|null
      */
-    public function getTo()
+    public function getTo(): array|string|null
     {
         return $this->driver->getTo();
     }
@@ -91,9 +93,9 @@ class SmsDriver implements DriverInterface
     /**
      * Get from (sender name)
      * 
-     * @return string
+     * @return string|null
      */
-    public function getFrom()
+    public function getFrom(): string|null
     {
         return $this->driver->getFrom();
     }
@@ -101,9 +103,9 @@ class SmsDriver implements DriverInterface
     /**
      * Get message content
      * 
-     * @return string
+     * @return string|null
      */
-    public function getMessage()
+    public function getMessage(): string|null
     {
         return $this->driver->getMessage();
     }
@@ -116,6 +118,11 @@ class SmsDriver implements DriverInterface
     public function send(): SmsDriverResponse
     {
         $data = $this->payload();
+
+        if (is_array($data["to"]) && count($data["to"]) > 1 && !($this->driver instanceof DriverMultipleContactsInterface)) {
+            throw new Exception("Driver [{$this->name}] can't supported send to multiple contacts.");
+        }
+
         $this->dispatchSendingEvent($data);
 
         $response = $this->driver->send();

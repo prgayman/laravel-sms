@@ -96,8 +96,9 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
     public function toArray()
     {
         return [
-            "request" => $this->request,
-            "response" => $this->response,
+            "request"    => $this->request,
+            "response"   => $this->response,
+            "message"    => $this->message,
             "successful" => $this->succeeded
         ];
     }

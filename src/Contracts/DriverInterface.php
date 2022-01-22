@@ -7,12 +7,12 @@ use Prgayman\Sms\SmsDriverResponse;
 interface DriverInterface
 {
     /**
-     * Set mobile number
+     * Set mobile number's
      * 
-     * @param string $mobile
+     * @param array|string $to
      * @return $this
      */
-    public function to(string $mobile);
+    public function to(array|string $to);
 
     /**
      * Set sender Name
@@ -20,7 +20,7 @@ interface DriverInterface
      * @param string $senderName
      * @return $this
      */
-    public function from(string $senderName);
+    public function from(string|null $senderName);
 
     /**
      * Set text message
@@ -31,25 +31,25 @@ interface DriverInterface
     public function message(string $message);
 
     /** 
-     * Get recipient
+     * Get to
      * 
-     * @return string|null 
+     * @return array|string|null 
      */
-    public function getTo();
+    public function getTo(): array|string|null;
 
     /**
      * Get sender name
      * 
      * @return string|null
      */
-    public function getFrom();
+    public function getFrom(): string|null;
 
     /** 
      * Get text message
      * 
      * @return string|null 
      */
-    public function getMessage();
+    public function getMessage(): string|null;
 
     /**
      * Send Message

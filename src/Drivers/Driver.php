@@ -8,14 +8,14 @@ abstract class Driver implements DriverInterface
 {
     /**
      * Sender Name
-     * @var string
+     * @var string|null
      */
     protected $from;
 
     /**
      * Recipient 
      * 
-     * @var string
+     * @var array|string
      */
     protected $to;
 
@@ -32,13 +32,13 @@ abstract class Driver implements DriverInterface
      */
     protected $senderName;
 
-    public function to(string $mobile)
+    public function to(array|string $to)
     {
-        $this->to = $mobile;
+        $this->to = $to;
         return $this;
     }
 
-    public function from(string $senderName)
+    public function from(string|null $senderName)
     {
         $this->from = $senderName;
         return $this;
@@ -50,17 +50,17 @@ abstract class Driver implements DriverInterface
         return $this;
     }
 
-    public function getTo()
+    public function getTo(): array|string|null
     {
         return $this->to;
     }
 
-    public function getFrom()
+    public function getFrom(): string|null
     {
         return is_null($this->from) && !is_null($this->senderName) ? $this->senderName : $this->from;
     }
 
-    public function getMessage()
+    public function getMessage(): string|null
     {
         return $this->text;
     }

@@ -69,7 +69,7 @@ return [
         ],
     ],
 
-    /**
+    /** 
      * Package system events.
      */
     'events' => [
