@@ -27,32 +27,18 @@ class TaqnyatClient
     }
 
     /**
-     * Send single sms
-     * 
-     * @param string $sender
-     * @param string $message
-     * @param string $mobile
-     * 
-     * @return \Prgayman\Sms\SmsDriverResponse
-     */
-    public function sendSingleSms(string $message, string $sender, string $mobile): SmsDriverResponse
-    {
-        return $this->send($message, [$mobile], $sender);
-    }
-
-    /**
      * Send message
      * 
      * @param string $message
-     * @param array $recipients
+     * @param array|string  $recipients
      * @param string $sender
      * 
      * @return \Prgayman\Sms\SmsDriverResponse
      */
-    private function send(string $message, array $recipients, string $sender): SmsDriverResponse
+    public function send(string $message, string $sender, array|string $recipients): SmsDriverResponse
     {
         $request = [
-            'recipients' => $recipients,
+            'recipients' => is_array($recipients) ? $recipients : [$recipients],
             'sender' => $sender,
             'body' => $message,
         ];

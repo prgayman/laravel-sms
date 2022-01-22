@@ -3,9 +3,10 @@
 namespace Prgayman\Sms\Drivers;
 
 use Prgayman\Sms\Clients\JawalSmsClient;
+use Prgayman\Sms\Contracts\DriverMultipleContactsInterface;
 use Prgayman\Sms\SmsDriverResponse;
 
-class JawalSmsDriver extends Driver
+class JawalSmsDriver extends Driver implements DriverMultipleContactsInterface
 {
 
     /**
@@ -39,6 +40,6 @@ class JawalSmsDriver extends Driver
 
     public function send(): SmsDriverResponse
     {
-        return $this->client()->sendSingleSms($this->getMessage(), $this->getFrom(), $this->getTo());
+        return $this->client()->send($this->getMessage(), $this->getFrom(), $this->getTo());
     }
 }

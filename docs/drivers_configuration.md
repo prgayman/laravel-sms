@@ -10,7 +10,7 @@
 |:------------------ | :---------- |  :------ | :------------- |
 |SMS_JAWAL_SMS_USERNAME|Yes|null| Account username
 |SMS_JAWAL_SMS_PASSWORD|Yes|null| Account password
-|SMS_JAWAL_SMS_SENDER|No|null| Sender Name (optional) you can set sender name using function ```from()```
+|SMS_JAWAL_SMS_SENDER_NAME|No|null| Sender Name (optional) you can set sender name using function ```from()```
 
 
 ## Taqnyat

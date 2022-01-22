@@ -44,19 +44,25 @@ class JawalSmsClient
      * 
      * @param string $sender
      * @param string $message
-     * @param string $mobile
+     * @param array|string $mobile
      * 
      * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function sendSingleSms(string $message, string $sender, string $mobile): SmsDriverResponse
+    public function send(string $message, string $sender, array|string $mobile): SmsDriverResponse
     {
+        $mobile = is_array($mobile)
+            ? implode(",", array_map(function ($to) {
+                return str_replace('+', '', $to);
+            }, $mobile))
+            : str_replace('+', '', $mobile);
+
         $request = [
             "username" => $this->username,
             "password" => $this->password,
             "unicode"  => $this->unicode,
             "sender"   => $sender,
             "message"  => $message,
-            'mobile'   => str_replace('+', '', $mobile),
+            'mobile'   => $mobile,
         ];
 
         $response = Http::post("$this->baseUrl/httpSmsProvider.aspx", $request);

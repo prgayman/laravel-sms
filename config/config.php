@@ -36,7 +36,7 @@ return [
             "driver" => "jawal_sms",
             'username' => env('SMS_JAWAL_SMS_USERNAME'),
             'password' => env('SMS_JAWAL_SMS_PASSWORD'),
-            'sender'   => env('SMS_JAWAL_SMS_SENDER'),
+            'sender'   => env('SMS_JAWAL_SMS_SENDER_NAME'),
         ],
 
         "taqnyat" => [
