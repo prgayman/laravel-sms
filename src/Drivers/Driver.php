@@ -2,7 +2,6 @@
 
 namespace Prgayman\Sms\Drivers;
 
-use InvalidArgumentException;
 use Prgayman\Sms\Contracts\DriverInterface;
 
 abstract class Driver implements DriverInterface
@@ -53,27 +52,16 @@ abstract class Driver implements DriverInterface
 
     public function getTo()
     {
-        if (is_null($this->to)) {
-            throw new InvalidArgumentException('The "to" value cannot be null');
-        }
         return $this->to;
     }
 
     public function getFrom()
     {
-        $from = is_null($this->from) && !is_null($this->senderName) ? $this->senderName : $this->from;
-
-        if (is_null($from)) {
-            throw new InvalidArgumentException('The "from" value cannot be null');
-        }
-        return $from;
+        return is_null($this->from) && !is_null($this->senderName) ? $this->senderName : $this->from;
     }
 
     public function getMessage()
     {
-        if (is_null($this->text)) {
-            throw new InvalidArgumentException('The "message" value cannot be null');
-        }
         return $this->text;
     }
 }

@@ -83,7 +83,7 @@ class SmsDriver implements DriverInterface
      * 
      * @return string
      */
-    public function getTo(): string
+    public function getTo()
     {
         return $this->driver->getTo();
     }
@@ -93,7 +93,7 @@ class SmsDriver implements DriverInterface
      * 
      * @return string
      */
-    public function getFrom(): string
+    public function getFrom()
     {
         return $this->driver->getFrom();
     }
@@ -103,7 +103,7 @@ class SmsDriver implements DriverInterface
      * 
      * @return string
      */
-    public function getMessage(): string
+    public function getMessage()
     {
         return $this->driver->getMessage();
     }
