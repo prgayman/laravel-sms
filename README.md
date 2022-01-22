@@ -84,7 +84,7 @@ You can publish the config file with this artisan command:
 ## Available SMS Drivers local development
 |Provider|Multiple contacts|Config
 |:--------- | :------: | :------: |
-|array|-|Yes
+|array|Yes|-
 |log|Yes|[Click](docs/drivers_configuration.md#log)
 
 
