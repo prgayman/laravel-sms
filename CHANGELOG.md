@@ -2,6 +2,12 @@
 
 All notable changes to `prgayman/laravel-sms` will be documented in this file
 
+## 1.1.0 - 2022-01-22
+
+- Support send multiple contacts
+- Add interface DriverMultipleContactsInterface
+- dirver array,log,JawalSms and Taqnyat Support send multiple contacts
+
 ## 1.0.1 - 2022-01-21
 
 - SmsDriverResponse implements from Arrayable and JsonSerializable
