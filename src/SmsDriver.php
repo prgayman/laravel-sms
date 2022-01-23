@@ -13,7 +13,6 @@ class SmsDriver implements DriverInterface
 {
     /**
      * The event dispatcher instance.
-     *
      * @var \Illuminate\Contracts\Events\Dispatcher|null
      */
     protected $events;
@@ -45,8 +44,7 @@ class SmsDriver implements DriverInterface
     }
 
     /**
-     * Set to 
-     * 
+     * Set to
      * @param array|string $to
      * @return $this
      */
@@ -59,8 +57,7 @@ class SmsDriver implements DriverInterface
     }
 
     /**
-     * Set from (sender name) 
-     * 
+     * Set from (sender name)
      * @param string|null $senderName
      * @return $this
      */
@@ -71,8 +68,7 @@ class SmsDriver implements DriverInterface
     }
 
     /**
-     * Set message 
-     * 
+     * Set message
      * @param string $message
      * @return $this
      */
@@ -83,8 +79,7 @@ class SmsDriver implements DriverInterface
     }
 
     /**
-     * Get to 
-     * 
+     * Get to
      * @return array|string|null
      */
     public function getTo(): array|string|null
@@ -94,7 +89,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Get from (sender name)
-     * 
      * @return string|null
      */
     public function getFrom(): string|null
@@ -104,7 +98,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Get message content
-     * 
      * @return string|null
      */
     public function getMessage(): string|null
@@ -114,7 +107,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Send Message
-     * 
      * @return \Prgayman\sms\SmsDriverResponse
      */
     public function send(): SmsDriverResponse
@@ -131,10 +123,10 @@ class SmsDriver implements DriverInterface
 
         if ($response->successful()) {
             $this->dispatchSentEvent($data);
-            $this->addHistory($data,  SmsHistory::SUCCESSED);
+            $this->addHistory($data, SmsHistory::SUCCESSED);
         } else {
             $this->dispatchFailedEvent($data, $response->getMessage());
-            $this->addHistory($data,  SmsHistory::FAILED);
+            $this->addHistory($data, SmsHistory::FAILED);
         }
 
         return $response;
@@ -142,7 +134,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Send multiple messages
-     * 
      * @param $items must contain message, to, and from keys per item
      * @return \Prgayman\sms\SmsDriverResponse[]
      */
@@ -164,7 +155,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Add row to history if history enabled
-     * 
      * @param array $data
      * @param string $status
      * @return bool
@@ -182,7 +172,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Dispatch message failed event
-     * 
      * @param array $data
      * @param string $message
      * @return void
@@ -202,7 +191,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Dispatch message sending event
-     * 
      * @param array $data
      * @return void
      */
@@ -220,7 +208,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Dispatch message sent event
-     * 
      * @param array $data
      * @return void
      */
@@ -250,7 +237,6 @@ class SmsDriver implements DriverInterface
 
     /**
      * Dynamically call the driver instance.
-     *
      * @param  string  $method
      * @param  array  $parameters
      * @return mixed

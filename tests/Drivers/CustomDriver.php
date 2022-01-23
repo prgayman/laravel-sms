@@ -7,7 +7,6 @@ use Prgayman\Sms\SmsDriverResponse;
 
 class CustomDriver extends Driver
 {
-
     public function send(): SmsDriverResponse
     {
         $request = [

@@ -15,7 +15,6 @@ trait CreateDriver
 {
     /**
      * Create an instance of the Log driver.
-     *
      * @param array $config
      * @return \Prgayman\Sms\Drivers\LogDriver
      */
@@ -32,17 +31,15 @@ trait CreateDriver
 
     /**
      * Create an instance of the Array Driver.
-     *
      * @return \Prgayman\Sms\Drivers\ArrayDriver
      */
     protected function createArrayDriver(array $config)
     {
-        return new ArrayDriver;
+        return new ArrayDriver();
     }
 
     /**
      * Create an instance of the JawalbSmsWs Driver.
-     *
      * @return \Prgayman\Sms\Drivers\JawalSmsDriver
      */
     protected function createJawalSmsDriver(array $config)
@@ -56,7 +53,6 @@ trait CreateDriver
 
     /**
      * Create an instance of the TaqnyatDriver Driver.
-     *
      * @return \Prgayman\Sms\Drivers\TaqnyatDriver
      */
     protected function createTaqnyatDriver(array $config)
@@ -69,7 +65,6 @@ trait CreateDriver
 
     /**
      * Create an instance of the NexmoDriver Driver.
-     *
      * @return \Prgayman\Sms\Drivers\NexmoDriver
      */
     protected function createNexmoDriver(array $config)
@@ -83,7 +78,6 @@ trait CreateDriver
 
     /**
      * Create an instance of the TwilioDriver Driver.
-     *
      * @return \Prgayman\Sms\Drivers\TwilioDriver
      */
     protected function createTwilioDriver(array $config)

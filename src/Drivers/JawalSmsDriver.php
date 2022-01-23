@@ -8,7 +8,6 @@ use Prgayman\Sms\SmsDriverResponse;
 
 class JawalSmsDriver extends Driver implements DriverMultipleContactsInterface
 {
-
     /**
      * Username
      * @var string

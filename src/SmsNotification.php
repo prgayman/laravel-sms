@@ -4,7 +4,6 @@ namespace Prgayman\Sms;
 
 class SmsNotification
 {
-
     /**
      * Sms driver
      * @var \Prgayman\Sms\Contracts\DriverInterface
@@ -18,7 +17,6 @@ class SmsNotification
 
     /**
      * Get a Driver instance by name.
-     *
      * @param string|null  $name
      * @return $this
      */
@@ -29,8 +27,7 @@ class SmsNotification
     }
 
     /**
-     * Set to 
-     * 
+     * Set to
      * @param string $mobile
      * @return $this
      */
@@ -41,8 +38,7 @@ class SmsNotification
     }
 
     /**
-     * Set from (sender name) 
-     * 
+     * Set from (sender name)
      * @param string $senderName
      * @return $this
      */
@@ -53,8 +49,7 @@ class SmsNotification
     }
 
     /**
-     * Set message 
-     * 
+     * Set message
      * @param string $message
      * @return $this
      */

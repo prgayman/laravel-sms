@@ -4,7 +4,6 @@ namespace Prgayman\Sms;
 
 class SmsConfig
 {
-
     public static function config($key, $default = null)
     {
         return config("sms.{$key}", $default);

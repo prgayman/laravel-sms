@@ -7,10 +7,8 @@ use JsonSerializable;
 
 class SmsDriverResponse implements Arrayable, JsonSerializable
 {
-
     /**
      * Sms paylaod
-     * 
      * @var array
      */
     protected $request;
@@ -23,14 +21,12 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
 
     /**
      * Sms error or success message
-     * 
      * @var string|null
      */
     protected $message;
 
     /**
      * Sms successful
-     * 
      * @var bool
      */
     protected $succeeded;
@@ -45,7 +41,6 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
 
     /**
      * Get sms provider request
-     * 
      * @return array
      */
     public function getRequest(): array
@@ -55,7 +50,6 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
 
     /**
      * Get sms provider response
-     * 
      * @return mixed
      */
     public function getResponse()
@@ -65,7 +59,6 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
 
     /**
      * Get message
-     * 
      * @return string|null
      */
     public function getMessage()
@@ -75,7 +68,6 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
 
     /**
      * Check is successfuly send sms message
-     * 
      * @return bool
      */
     public function successful(): bool
@@ -85,7 +77,6 @@ class SmsDriverResponse implements Arrayable, JsonSerializable
 
     /**
      * Check is failed send sms message
-     * 
      * @return bool
      */
     public function failed(): bool

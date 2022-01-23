@@ -51,11 +51,17 @@ class LogDriver extends Driver implements DriverMultipleContactsInterface
     }
 
     /**
-     * Get a loggable string 
+     * Get a loggable string
      * @return string
      */
     protected function getEntityString(array $request)
     {
-        return (string) __CLASS__ . PHP_EOL . "[From]: {$request['from']}" . PHP_EOL . "[To]: {$request['to']}" . PHP_EOL . "[Message]: {$request['message']}";
+        return (string) __CLASS__
+            . PHP_EOL
+            . "[From]: {$request['from']}"
+            . PHP_EOL
+            . "[To]: {$request['to']}"
+            . PHP_EOL
+            . "[Message]: {$request['message']}";
     }
 }

@@ -7,10 +7,8 @@ use Prgayman\Sms\SmsDriverResponse;
 
 class NexmoDriver extends Driver
 {
-
     /**
      * Create a new log transport instance.
-     *
      * @return void
      */
     public function __construct(string $apiKey, string $apiSecret, ?string $senderName = null)
@@ -22,7 +20,6 @@ class NexmoDriver extends Driver
 
     /**
      * Nexmo instance client
-     * 
      * @return \Nexmo\Client
      */
     public function client()

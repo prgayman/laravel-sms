@@ -4,7 +4,6 @@ if (!function_exists("sms")) {
 
     /**
      * Helper function sms
-     * 
      * @param string|null $driver
      * @return \Prgayman\Sms\SmsDriver
      */
@@ -18,7 +17,6 @@ if (!function_exists("smsHistory")) {
 
     /**
      * Helper function sms history
-     * 
      * @return \Prgayman\Sms\SmsHistory
      */
     function smsHistory()

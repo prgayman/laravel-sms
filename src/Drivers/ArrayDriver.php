@@ -23,7 +23,7 @@ class ArrayDriver extends Driver implements DriverMultipleContactsInterface
      */
     public function __construct()
     {
-        $this->messages = new Collection;
+        $this->messages = new Collection();
     }
 
     public function send(): SmsDriverResponse

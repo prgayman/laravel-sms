@@ -12,28 +12,24 @@ class SmsManager
 
     /**
      * The application instance.
-     *
      * @var \Illuminate\Contracts\Foundation\Application
      */
     protected $app;
 
     /**
      * The array of resolved drivers.
-     *
      * @var array
      */
     protected $drivers = [];
 
     /**
      * The array of supported drivers.
-     *
      * @var array
      */
     protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio"];
 
     /**
      * Create a new Sms manager instance.
-     *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void
      */
@@ -44,7 +40,6 @@ class SmsManager
 
     /**
      * Get a Driver instance by name.
-     *
      * @param string|null  $name
      * @return \Prgayman\Sms\SmsDriver
      */
@@ -57,7 +52,6 @@ class SmsManager
 
     /**
      * Attempt to get the driver from the local cache.
-     *
      * @param  string  $name
      * @return \Prgayman\Sms\SmsDriver
      */
@@ -68,10 +62,8 @@ class SmsManager
 
     /**
      * Resolve the given driver.
-     *
      * @param string $name
      * @return \Prgayman\Sms\SmsDriver
-     *
      * @throws \InvalidArgumentException
      */
     protected function resolve($name): SmsDriver
@@ -84,9 +76,9 @@ class SmsManager
 
         if (isset($config['handler'])) {
             if (is_subclass_of($config['handler'], DriverInterface::class)) {
-                $driver = new $config['handler'];
+                $driver = new $config['handler']();
             } else {
-                throw new InvalidArgumentException("Driver [{$name}] is not instanceof [\Prgayman\Sms\Contracts\DriverInterface].");
+                throw new InvalidArgumentException("Driver [{$name}] is not instanceof [DriverInterface].");
             }
         } else {
             if (!in_array($config['driver'] ?? $name, $this->supportedDrivers)) {
@@ -110,7 +102,6 @@ class SmsManager
 
     /**
      * Get the sms connection configuration.
-     *
      * @param  string  $name
      * @return array
      */
@@ -121,7 +112,6 @@ class SmsManager
 
     /**
      * Get the default sms driver name.
-     *
      * @return string|null
      */
     public function getDefaultDriver()
@@ -131,7 +121,6 @@ class SmsManager
 
     /**
      * Set the default sms driver name.
-     *
      * @param string $name
      * @return void
      */
@@ -142,7 +131,6 @@ class SmsManager
 
     /**
      * Get the application instance used by the manager.
-     *
      * @return \Illuminate\Contracts\Foundation\Application
      */
     public function getApplication()
@@ -152,7 +140,6 @@ class SmsManager
 
     /**
      * Set the application instance used by the manager.
-     *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return $this
      */
@@ -165,7 +152,6 @@ class SmsManager
 
     /**
      * Dynamically call the default driver instance.
-     *
      * @param  string  $method
      * @param  array  $parameters
      * @return mixed

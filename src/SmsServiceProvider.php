@@ -52,7 +52,6 @@ class SmsServiceProvider extends ServiceProvider
 
     /**
      * Register the mailer instance.
-     *
      * @return void
      */
     protected function registerDriver()
@@ -68,7 +67,6 @@ class SmsServiceProvider extends ServiceProvider
 
     /**
      * Bind laravel-sms models
-     * 
      * @return void
      */
     private function bindModels(): void

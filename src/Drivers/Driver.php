@@ -13,8 +13,7 @@ abstract class Driver implements DriverInterface
     protected $from;
 
     /**
-     * Recipient 
-     * 
+     * Recipient
      * @var array|string
      */
     protected $to;
@@ -27,7 +26,6 @@ abstract class Driver implements DriverInterface
 
     /**
      * Driver Sender Name
-     * 
      * @var string|null
      */
     protected $senderName;

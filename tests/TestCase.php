@@ -6,14 +6,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-
     use RefreshDatabase;
 
     /**
      * Get package providers.
-     *
      * @param  \Illuminate\Foundation\Application  $app
-     *
      * @return array
      */
     protected function getPackageProviders($app)
@@ -25,9 +22,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     /**
      * Override application aliases.
-     *
      * @param  \Illuminate\Foundation\Application  $app
-     *
      * @return array
      */
     protected function getPackageAliases($app)
@@ -40,7 +35,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     /**
      * Define database migrations.
-     *
      * @return void
      */
     protected function defineDatabaseMigrations()

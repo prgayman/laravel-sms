@@ -8,42 +8,36 @@ class SmsHistory
 {
     /**
      * Sender Names
-     * 
      * @var array|string
      */
     protected $senders;
 
     /**
      * Recipients
-     * 
      * @var array|string
      */
     protected $recipients;
 
     /**
-     * Message status 
-     * 
+     * Message status
      * @var array|string
      */
     protected $statuses;
 
     /**
      * Drivers
-     * 
      * @var array|string
      */
     protected $drivers;
 
     /**
      * Driver names
-     * 
      * @var array|string
      */
     protected $driverNames;
 
     /**
      * Filter by recipients
-     * 
      * @param array|string $recipients
      * @return $this
      */
@@ -55,7 +49,6 @@ class SmsHistory
 
     /**
      * Filter by senders
-     * 
      * @param array|string $senders
      * @return $this
      */
@@ -67,7 +60,6 @@ class SmsHistory
 
     /**
      * Filter by statuses
-     * 
      * @param array|string $statuses
      * @return $this
      */
@@ -80,7 +72,6 @@ class SmsHistory
 
     /**
      * Filter by drivers
-     * 
      * @param array|string $drivers
      * @return $this
      */
@@ -90,9 +81,8 @@ class SmsHistory
         return $this;
     }
 
-    /** 
+    /**
      * Filter by driver name
-     * 
      * @param array|string $driverNames
      * @return $this
      */

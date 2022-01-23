@@ -9,7 +9,6 @@ use Prgayman\Sms\Test\TestCase;
 
 class SmsTest extends TestCase
 {
-
     public function testSetDefaultDriver()
     {
         Sms::setDefaultDriver("array");

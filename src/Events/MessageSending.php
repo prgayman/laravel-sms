@@ -4,7 +4,6 @@ namespace Prgayman\Sms\Events;
 
 class MessageSending
 {
-
     /**
      * Message data
      * @var array
@@ -13,7 +12,6 @@ class MessageSending
 
     /**
      * Create a new event instance.
-     *
      * @return void
      */
     public function __construct(array $data)

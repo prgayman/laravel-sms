@@ -23,7 +23,7 @@ class SmsHistoryTest extends TestCase
             ->message($message)
             ->send();
 
-        $this->assertDatabaseCount((new ModelsSmsHistory)->getTable(), 1);
+        $this->assertDatabaseCount((new ModelsSmsHistory())->getTable(), 1);
     }
 
     public function testDisableStoreHistory()
@@ -39,7 +39,7 @@ class SmsHistoryTest extends TestCase
             ->message($message)
             ->send();
 
-        $this->assertDatabaseCount((new ModelsSmsHistory)->getTable(), 0);
+        $this->assertDatabaseCount((new ModelsSmsHistory())->getTable(), 0);
     }
 
     public function testGetHistories()

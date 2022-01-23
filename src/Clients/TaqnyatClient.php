@@ -27,11 +27,9 @@ class TaqnyatClient
 
     /**
      * Send message
-     * 
      * @param string $message
      * @param array|string  $recipients
      * @param string $sender
-     * 
      * @return \Prgayman\Sms\SmsDriverResponse
      */
     public function send(string $message, string $sender, array|string $recipients): SmsDriverResponse

@@ -8,7 +8,6 @@ use Prgayman\Sms\SmsDriverResponse;
 
 class TaqnyatDriver extends Driver implements DriverMultipleContactsInterface
 {
-
     /**
      * Authorization bearer token
      * @var string
