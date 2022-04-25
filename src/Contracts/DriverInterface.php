@@ -28,6 +28,13 @@ interface DriverInterface
     public function message(string $message);
 
     /**
+     * Set type message
+     * @param string $type
+     * @return $this
+     */
+    public function type(string $type);
+
+    /**
      * Get to
      * @return array|string|null
      */
@@ -44,6 +51,12 @@ interface DriverInterface
      * @return string|null
      */
     public function getMessage(): string|null;
+
+    /**
+     * Get type
+     * @return string
+     */
+    public function getType(): string;
 
     /**
      * Send Message

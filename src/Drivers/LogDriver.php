@@ -41,6 +41,7 @@ class LogDriver extends Driver implements DriverMultipleContactsInterface
         $to = $this->getTo();
 
         $request = [
+            "type"    => $this->getType(),
             "from"    => $this->getFrom(),
             "to"      => is_array($to) ? implode(",", $to) : $to,
             "message" => $this->getMessage(),
@@ -57,6 +58,8 @@ class LogDriver extends Driver implements DriverMultipleContactsInterface
     protected function getEntityString(array $request)
     {
         return (string) __CLASS__
+            . PHP_EOL
+            . "[Type]: {$request['type']}"
             . PHP_EOL
             . "[From]: {$request['from']}"
             . PHP_EOL

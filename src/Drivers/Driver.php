@@ -30,6 +30,12 @@ abstract class Driver implements DriverInterface
      */
     protected $senderName;
 
+    /**
+     * Type message
+     * @var string
+     */
+    protected $type = \Prgayman\Sms\SmsTypes::GENERAL;
+
     public function to(array|string $to)
     {
         $this->to = $to;
@@ -46,6 +52,17 @@ abstract class Driver implements DriverInterface
     {
         $this->text = $message;
         return $this;
+    }
+
+    public function type(string $type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     public function getTo(): array|string|null

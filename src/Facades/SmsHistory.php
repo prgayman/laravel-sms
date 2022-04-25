@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Prgayman\Sms\SmsHistory statuses(array|string $statuses)
  * @method static Prgayman\Sms\SmsHistory drivers(array|string $drivers)
  * @method static Prgayman\Sms\SmsHistory driverNames(array|string $driverNames)
+ * @method static Prgayman\Sms\SmsHistory types(array|string $types)
  * @method static \Illuminate\Database\Eloquent\Collection|static[] get()
  * @see \Prgayman\Sms\SmsHistory
  */

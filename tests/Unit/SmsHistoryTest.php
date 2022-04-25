@@ -6,6 +6,7 @@ use Prgayman\Sms\Facades\Sms;
 use Prgayman\Sms\Facades\SmsHistory;
 use Prgayman\Sms\Models\SmsHistory as ModelsSmsHistory;
 use Prgayman\Sms\SmsConfig;
+use Prgayman\Sms\SmsTypes;
 use Prgayman\Sms\Test\TestCase;
 
 class SmsHistoryTest extends TestCase
@@ -24,6 +25,65 @@ class SmsHistoryTest extends TestCase
             ->send();
 
         $this->assertDatabaseCount((new ModelsSmsHistory())->getTable(), 1);
+    }
+
+    public function testStoreHistoryWithCustomType()
+    {
+        SmsConfig::set("history.enabled", true);
+
+        $to = "+962792994123";
+        $from = "SenderName";
+        $message = "New Message";
+
+        Sms::to($to)
+            ->type(SmsTypes::OTP)
+            ->from($from)
+            ->message($message)
+            ->send();
+
+        $histories = SmsHistory::types(SmsTypes::OTP)->get();
+
+        $this->assertCount(1, $histories);
+    }
+
+    public function testStoreExceptionMessage()
+    {
+        SmsConfig::set("history.enabled", true);
+
+        SmsConfig::set("drivers.twilio", [
+            ...SmsConfig::config("drivers.twilio"),
+            "sid" => "sid",
+            "token" => "token"
+        ]);
+
+        Sms::driver("twilio")
+            ->to("+962792994123")
+            ->from("SenderName")
+            ->message("New Message")
+            ->send();
+
+        $histories = SmsHistory::drivers("twilio")->get();
+
+        $this->assertNotNull($histories->first()->exception);
+    }
+
+    public function testCheckNotStoreExceptionMessageIfSentMessage()
+    {
+        SmsConfig::set("history.enabled", true);
+
+        $to = "+962792994123";
+        $from = "SenderName";
+        $message = "New Message";
+
+        Sms::to($to)
+            ->type(SmsTypes::OTP)
+            ->from($from)
+            ->message($message)
+            ->send();
+
+        $histories = SmsHistory::types(SmsTypes::OTP)->get();
+
+        $this->assertNull($histories->first()->exception);
     }
 
     public function testDisableStoreHistory()

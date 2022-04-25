@@ -44,6 +44,17 @@ class SmsDriver implements DriverInterface
     }
 
     /**
+     * Set type
+     * @param string $type
+     * @return $this
+     */
+    public function type(string $type): SmsDriver
+    {
+        $this->driver->type($type);
+        return $this;
+    }
+
+    /**
      * Set to
      * @param array|string $to
      * @return $this
@@ -76,6 +87,15 @@ class SmsDriver implements DriverInterface
     {
         $this->driver->message($message);
         return $this;
+    }
+
+    /**
+     * Get type
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->driver->getType();
     }
 
     /**
@@ -126,7 +146,7 @@ class SmsDriver implements DriverInterface
             $this->addHistory($data, SmsHistory::SUCCESSED);
         } else {
             $this->dispatchFailedEvent($data, $response->getMessage());
-            $this->addHistory($data, SmsHistory::FAILED);
+            $this->addHistory($data, SmsHistory::FAILED, $response->getMessage());
         }
 
         return $response;
@@ -159,11 +179,17 @@ class SmsDriver implements DriverInterface
      * @param string $status
      * @return bool
      */
-    protected function addHistory(array $data, string $status): bool
+    protected function addHistory(array $data, string $status, ?string $exception = null): bool
     {
-        if (SmsConfig::history("enabled", false) && in_array($status, SmsConfig::history("statuses", [])) && !is_array($data['to'])) {
+        if (
+            SmsConfig::history("enabled", false) &&
+            in_array($status, SmsConfig::history("statuses", [])) &&
+            in_array($data['type'], SmsConfig::history("types", [])) &&
+            !is_array($data['to'])
+        ) {
             $data['id'] = Str::uuid()->toString();
             $data['status'] = $status;
+            $data['exception'] = $exception;
             $history = app(SmsHistory::class)::create($data);
             return $history ? true : false;
         }
@@ -229,9 +255,10 @@ class SmsDriver implements DriverInterface
         return [
             "driver"      => $this->config['driver'] ?? $this->name,
             "driver_name" => $this->name,
-            "message"     => $this->getMessage(),
+            "type"        => $this->getType(),
             "from"        => $this->getFrom(),
-            "to"          => $this->getTo()
+            "to"          => $this->getTo(),
+            "message"     => $this->getMessage()
         ];
     }
 

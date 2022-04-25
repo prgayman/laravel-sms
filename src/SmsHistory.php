@@ -37,6 +37,23 @@ class SmsHistory
     protected $driverNames;
 
     /**
+     * Types
+     * @var array|string
+     */
+    protected $types;
+
+    /**
+     * Filter by types
+     * @param array|string $types
+     * @return $this
+     */
+    public function types($types): SmsHistory
+    {
+        $this->types = $types;
+        return $this;
+    }
+
+    /**
      * Filter by recipients
      * @param array|string $recipients
      * @return $this
@@ -112,6 +129,11 @@ class SmsHistory
                 $query->whereIn("status", is_array($this->statuses)
                     ? $this->statuses
                     : [$this->statuses]);
+            })
+            ->when(!is_null($this->types), function ($query) {
+                $query->whereIn("type", is_array($this->types)
+                    ? $this->types
+                    : [$this->types]);
             })
             ->when(!is_null($this->drivers), function ($query) {
                 $query->whereIn("driver", is_array($this->drivers)

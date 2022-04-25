@@ -93,6 +93,17 @@ return [
         "statuses" => [
             \Prgayman\Sms\Models\SmsHistory::SUCCESSED,
             \Prgayman\Sms\Models\SmsHistory::FAILED,
+        ],
+
+        /**
+         * Enable history for this types
+         * @var array
+         */
+        "types" => [
+            \Prgayman\Sms\SmsTypes::GENERAL,
+            \Prgayman\Sms\SmsTypes::AD,
+            \Prgayman\Sms\SmsTypes::OTP,
+            \Prgayman\Sms\SmsTypes::WELCOME,
         ]
     ],
 

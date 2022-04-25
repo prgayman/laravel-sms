@@ -29,9 +29,10 @@ class ArrayDriver extends Driver implements DriverMultipleContactsInterface
     public function send(): SmsDriverResponse
     {
         $request = [
+            "type"    => $this->getType(),
             "from"    => $this->getFrom(),
             "to"      => $this->getTo(),
-            "message" => $this->getMessage()
+            "message" => $this->getMessage(),
         ];
 
         $this->messages[] = $request;

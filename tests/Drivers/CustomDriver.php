@@ -10,7 +10,8 @@ class CustomDriver extends Driver
     public function send(): SmsDriverResponse
     {
         $request = [
-            "to" => $this->getTo(),
+            "type" => $this->getType(),
+            "to"   => $this->getTo(),
             'from' => $this->getFrom(),
             'body' => $this->getMessage(),
         ];
