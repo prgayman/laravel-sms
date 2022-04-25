@@ -2,6 +2,11 @@
 
 All notable changes to `prgayman/laravel-sms` will be documented in this file
 
+## 1.2.0 - 2022-04-25
+
+- Add message type
+- Add store exception message if send message failed
+
 ## 1.1.0 - 2022-01-22
 
 - Support send multiple contacts

@@ -93,6 +93,12 @@ You can publish the config file with this artisan command:
 - ```\Prgayman\Sms\Events\MessageSent::class```
 - ```\Prgayman\Sms\Events\MessageFailed::class```
 
+## Types
+- ```\Prgayman\Sms\SmsTypes::GENERAL```
+- ```\Prgayman\Sms\SmsTypes::OTP```
+- ```\Prgayman\Sms\SmsTypes::WELCOME```
+- ```\Prgayman\Sms\SmsTypes::AD```
+
 ## Usage
 
 
@@ -166,8 +172,13 @@ $response->failed();
 
 Send using select driver sms
 ```php
-Sms::driver("array")->to($to)->from($from)->message($message)->send();
+Sms::driver("array")
+  ->to($to)
+  ->from($from)
+  ->message($message)
+  ->send();
 ```
+
 Send multiple contacts
 ```php
 // please sure driver is support send multiple contacts
@@ -181,6 +192,16 @@ Sms::to([
 ->send();
 
 ```
+Send using custom type
+```php
+Sms::driver("array")
+  ->type(\Prgayman\Sms\SmsTypes::OTP)
+  ->to($to)
+  ->from($from)
+  ->message($message)
+  ->send();
+```
+
 Send multiple messages (run events and store history per message)
 
 ```php
@@ -209,11 +230,29 @@ Send multiple messages (run events and store history per message)
 
 Send using helper function with default driver
 ```php
-sms()->to($to)->from($from)->message($message)->send();
+sms()
+  ->to($to)
+  ->from($from)
+  ->message($message)
+  ->send();
 ```
 Send using helper function and select driver
 ```php
-sms("array")->to($to)->from($from)->message($message)->send();
+sms("array")
+  ->to($to)
+  ->from($from)
+  ->message($message)
+  ->send();
+```
+
+Send using helper function and custom type
+```php
+sms("array")
+  ->type(\Prgayman\Sms\SmsTypes::OTP)
+  ->to($to)
+  ->from($from)
+  ->message($message)
+  ->send();
 ```
 
 ### Create custom driver
