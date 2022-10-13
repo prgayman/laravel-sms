@@ -60,6 +60,17 @@ class SmsNotification
     }
 
     /**
+     * Set type
+     * @param string $type
+     * @return $this
+     */
+    public function type(string $type): self
+    {
+        $this->driver->type($type);
+        return $this;
+    }
+
+    /**
      * Send sms message
      * @return mixed
      */
