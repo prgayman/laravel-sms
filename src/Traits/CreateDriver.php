@@ -47,7 +47,7 @@ trait CreateDriver
         return new JawalSmsDriver(
             $config["username"],
             $config["password"],
-            $config["sender"] ?? null
+            $config["sender"] ?? null,
         );
     }
 
@@ -59,7 +59,7 @@ trait CreateDriver
     {
         return new TaqnyatDriver(
             $config["authorization"],
-            $config["sender"] ?? null
+            $config["sender"] ?? null,
         );
     }
 
@@ -72,7 +72,7 @@ trait CreateDriver
         return new NexmoDriver(
             $config["api_key"],
             $config["api_secret"],
-            $config["sender"] ?? null
+            $config["sender"] ?? null,
         );
     }
 
@@ -85,7 +85,8 @@ trait CreateDriver
         return new TwilioDriver(
             $config["sid"],
             $config["token"],
-            $config["sender"] ?? null
+            $config["sender"] ?? null,
+            $config["options"] ?? [],
         );
     }
 }

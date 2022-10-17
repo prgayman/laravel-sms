@@ -21,14 +21,21 @@ class TwilioDriver extends Driver
     protected $token;
 
     /**
+     * Twilio default options
+     * @var array
+     */
+    protected $defaultOptions;
+
+    /**
      * Create a new log transport instance.
      * @return void
      */
-    public function __construct(string $sid, string $token, ?string $senderName = null)
+    public function __construct(string $sid, string $token, ?string $senderName = null, array $defaultOptions = [])
     {
         $this->sid = $sid;
         $this->token = $token;
         $this->senderName = $senderName;
+        $this->defaultOptions = $defaultOptions;
     }
 
     public function client()
@@ -42,7 +49,10 @@ class TwilioDriver extends Driver
             "to" => $this->getTo(),
             'from' => $this->getFrom(),
             'body' => $this->getMessage(),
-            'options' => $this->getOptions(),
+            'options' => [
+                ...$this->defaultOptions,
+                $this->getOptions()
+            ],
         ];
         try {
             $response =  $this->client()

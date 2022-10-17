@@ -134,10 +134,7 @@ class SmsDriver implements DriverInterface
      */
     public function getOptions(): array
     {
-        return [
-            ...$this->config['options'] ?? [],
-            ...$this->driver->getOptions()
-        ];
+        return $this->driver->getOptions();
     }
 
     /**
