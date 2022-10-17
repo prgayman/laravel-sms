@@ -5,23 +5,18 @@ All notable changes to `prgayman/laravel-sms` will be documented in this file
 ## 1.4.3 - 2022-10-17
 
 - Remove options from store history
-
 ## 1.4.2 - 2022-10-17
 
 - Fix add options to sms driver
-
 ## 1.4.1 - 2022-10-17
 
 - Fix add options to sms driver
-
 ## 1.4.0 - 2022-10-17
 
 - Add set options to sms driver
-
 ## 1.3.0 - 2022-10-13
 
 - Add set type to SmsNotification
-
 ## 1.2.0 - 2022-04-25
 
 - Add message type
