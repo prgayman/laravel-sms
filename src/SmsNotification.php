@@ -38,6 +38,17 @@ class SmsNotification
     }
 
     /**
+     * Set options
+     * @param array $options
+     * @return $this
+     */
+    public function options(string $options): self
+    {
+        $this->driver->options($options);
+        return $this;
+    }
+
+    /**
      * Set from (sender name)
      * @param string $senderName
      * @return $this

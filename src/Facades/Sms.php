@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Prgayman\Sms\SmsDriver to(array|string $mobile)
  * @method static \Prgayman\Sms\SmsDriver from(string $senderName)
  * @method static \Prgayman\Sms\SmsDriver message(string $text)
+ * @method static \Prgayman\Sms\SmsDriver options(array $options)
  * @method static array|string|null getTo()
  * @method static string|null getFrom()
  * @method static string|null getMessage()
+ * @method static array getOptions()
  * @method static \Prgayman\Sms\SmsDriverResponse send()
  * @method static \Prgayman\Sms\SmsDriverResponse[] sendArray(array $messages)
  * @see \Prgayman\Sms\SmsManager

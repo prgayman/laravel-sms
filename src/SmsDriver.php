@@ -68,6 +68,18 @@ class SmsDriver implements DriverInterface
     }
 
     /**
+     * Set sms options
+     *
+     * @param array $options
+     * @return $this
+     */
+    public function options(array $options): SmsDriver
+    {
+        $this->driver->options($options);
+        return $this;
+    }
+
+    /**
      * Set from (sender name)
      * @param string|null $senderName
      * @return $this
@@ -114,6 +126,15 @@ class SmsDriver implements DriverInterface
     public function getFrom(): string|null
     {
         return $this->driver->getFrom();
+    }
+
+    /**
+     * Get options
+     * @return string|null
+     */
+    public function getOptions(): array
+    {
+        return $this->driver->getOptions();
     }
 
     /**
@@ -190,6 +211,7 @@ class SmsDriver implements DriverInterface
             $data['id'] = Str::uuid()->toString();
             $data['status'] = $status;
             $data['exception'] = $exception;
+            $data["from"] = is_null($data['from']) ? '' : $data['from'];
             $history = app(SmsHistory::class)::create($data);
             return $history ? true : false;
         }
@@ -258,7 +280,8 @@ class SmsDriver implements DriverInterface
             "type"        => $this->getType(),
             "from"        => $this->getFrom(),
             "to"          => $this->getTo(),
-            "message"     => $this->getMessage()
+            "message"     => $this->getMessage(),
+            "options"     => $this->getOptions(),
         ];
     }
 

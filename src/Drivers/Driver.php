@@ -31,6 +31,12 @@ abstract class Driver implements DriverInterface
     protected $senderName;
 
     /**
+     * Driver options
+     * @var array
+     */
+    protected $options = [];
+
+    /**
      * Type message
      * @var string
      */
@@ -60,6 +66,12 @@ abstract class Driver implements DriverInterface
         return $this;
     }
 
+    public function options(array $options)
+    {
+        $this->options = $options;
+        return $this;
+    }
+
     public function getType(): string
     {
         return $this->type;
@@ -68,6 +80,11 @@ abstract class Driver implements DriverInterface
     public function getTo(): array|string|null
     {
         return $this->to;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 
     public function getFrom(): string|null

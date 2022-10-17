@@ -42,6 +42,7 @@ class TwilioDriver extends Driver
             "to" => $this->getTo(),
             'from' => $this->getFrom(),
             'body' => $this->getMessage(),
+            'options' => $this->getOptions(),
         ];
         try {
             $response =  $this->client()
@@ -50,7 +51,8 @@ class TwilioDriver extends Driver
                     $request['to'],
                     [
                         'from' => $request['from'],
-                        'body' => $request['body']
+                        'body' => $request['body'],
+                        ...$request['options']
                     ]
                 );
             return new SmsDriverResponse($request, $response, true);
