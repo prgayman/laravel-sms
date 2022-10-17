@@ -211,8 +211,8 @@ class SmsDriver implements DriverInterface
             $data['id'] = Str::uuid()->toString();
             $data['status'] = $status;
             $data['exception'] = $exception;
-            unset($data['options']);
             $data["from"] = is_null($data['from']) ? '' : $data['from'];
+            unset($data["options"]);
             $history = app(SmsHistory::class)::create($data);
             return $history ? true : false;
         }

@@ -2,9 +2,14 @@
 
 All notable changes to `prgayman/laravel-sms` will be documented in this file
 
+## 1.4.4 - 2022-10-17
+
+- Remove options from store history
+
 ## 1.4.3 - 2022-10-17
 
 - Remove options from store history
+
 ## 1.4.2 - 2022-10-17
 
 - Fix add options to sms driver
