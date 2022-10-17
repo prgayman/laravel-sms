@@ -37,12 +37,14 @@ return [
             'username' => env('SMS_JAWAL_SMS_USERNAME'),
             'password' => env('SMS_JAWAL_SMS_PASSWORD'),
             'sender'   => env('SMS_JAWAL_SMS_SENDER_NAME'),
+            'options' => []
         ],
 
         "taqnyat" => [
             "driver" => "taqnyat",
             'authorization' => env('SMS_TAQNYAT_AUTHORIZATION'),
             'sender' => env('SMS_TAQNYAT_SENDER_NAME'),
+            'options' => []
         ],
 
         "nexmo" => [
@@ -50,6 +52,7 @@ return [
             "api_key" => env("SMS_NEXMO_API_KEY"),
             "api_secret" => env("SMS_NEXMO_API_SECRET"),
             "sender" => env("SMS_NEXMO_SENDER_NAME"),
+            'options' => []
         ],
 
         "twilio" => [
@@ -57,15 +60,18 @@ return [
             "sid" => env("SMS_TWILIO_SID"),
             "token" => env("SMS_TWILIO_TOKEN"),
             "sender" => env("SMS_TWILIO_SENDER_NAME"),
+            'options' => []
         ],
 
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),
+            'options' => []
         ],
 
         'array' => [
             'driver' => 'array',
+            'options' => []
         ],
     ],
 
