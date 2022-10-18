@@ -8,42 +8,49 @@ class SmsHistory
 {
     /**
      * Sender Names
+     *
      * @var array|string
      */
     protected $senders;
 
     /**
      * Recipients
+     *
      * @var array|string
      */
     protected $recipients;
 
     /**
      * Message status
+     *
      * @var array|string
      */
     protected $statuses;
 
     /**
      * Drivers
+     *
      * @var array|string
      */
     protected $drivers;
 
     /**
      * Driver names
+     *
      * @var array|string
      */
     protected $driverNames;
 
     /**
      * Types
+     *
      * @var array|string
      */
     protected $types;
 
     /**
      * Filter by types
+     *
      * @param array|string $types
      * @return $this
      */
