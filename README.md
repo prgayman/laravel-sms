@@ -1,4 +1,4 @@
-# Laravel SMS 
+# Laravel SMS
 
 Laravel SMS allows you to send SMS from your Laravel application using multiple sms providers, allow to add custom sms provider
 
@@ -17,7 +17,7 @@ Or you can add it directly in your composer.json file:
 ```json
 {
   "require": {
-    "prgayman/laravel-sms": "1.2.0"
+    "prgayman/laravel-sms": "1.4.4"
   }
 }
 ```
@@ -112,7 +112,7 @@ SMS_DRIVER=log
 ```php
 /**
  * Set the default sms driver name.
- * 
+ *
  * @param string $driver
 */
 Prgayman\Sms\Facades\Sms::setDefaultDriver("array");
@@ -149,10 +149,10 @@ $message = "Test Send Message";
 
 /**
  * Send using default driver sms
- * 
+ *
  * @return \Prgayman\Sms\SmsDriverResponse
  */
-$response = Sms::to($to)->from($from)->message($message)->send(); 
+$response = Sms::to($to)->from($from)->message($message)->send();
 
 # Get Message
 $response->getMessage();
@@ -222,10 +222,10 @@ Send multiple messages (run events and store history per message)
      * @param $items must contain message, to, and from keys per item
      * @return \Prgayman\sms\SmsDriverResponse[]
      */
-    $response = Sms::sendArray($items); 
+    $response = Sms::sendArray($items);
 
-    // Or send using helper function 
-    $response = sms()->sendArray($items); 
+    // Or send using helper function
+    $response = sms()->sendArray($items);
 ```
 
 Send using helper function with default driver
@@ -267,11 +267,11 @@ sms("array")
 
   class CustomDriver extends Driver implements DriverMultipleContactsInterface {
 
-      # You not need to run events or store history 
+      # You not need to run events or store history
       # package automatically run all events and store history
       public function send() : SmsDriverResponse
       {
-          
+
         $request = [
             "to" => $this->getTo(),
             'from' => $this->getFrom(),
@@ -290,7 +290,7 @@ sms("array")
   }
   ```
 - Add driver confg in ```config/sms.php```
-  ```php 
+  ```php
     "drivers"=>[
       .......
 
@@ -309,14 +309,14 @@ sms("array")
   ```
 - Send message with custom driver
   ```php
-  # Use driver 
+  # Use driver
   Sms::driver("your-driver-name")
       ->to($to)
       ->from($from)
       ->message($message)
       ->send();
 
-  # Or set custom driver in default driver or set 
+  # Or set custom driver in default driver or set
   # SMS_DRIVER=your-driver-name in dotenv file
   Sms::setDefaultDriver("your-driver-name");
 
