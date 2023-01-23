@@ -61,4 +61,9 @@ Or you can add it directly in your composer.json file:
 |SMS_TWILIO_TOKEN|Yes|null| Account Token
 |SMS_TWILIO_SENDER_NAME|No|null| Sender Name (optional) you can set sender name using function ```from()```
 
-
+## MoraSa
+|Key|Mandatory|Default|Description
+|:------------------ | :---------- |  :------ | :------------- |
+|SMS_MORASA_USERNAME|Yes|null| Account username
+|SMS_MORASA_API_KEY|Yes|null| Account password
+|SMS_MORASA_SENDER_NAME|No|null| Sender Name (optional) you can set sender name using function ```from()```

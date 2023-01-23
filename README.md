@@ -79,6 +79,7 @@ You can publish the config file with this artisan command:
 |Taqnyat|https://www.taqnyat.sa/|Yes|Yes|[Click](docs/drivers_configuration.md#taqnyat)
 |Nexmo|https://www.nexmo.com/|Yes|No|[Click](docs/drivers_configuration.md#nexmo)
 |Twilio|https://www.twilio.com/|Yes|No|[Click](docs/drivers_configuration.md#twilio)
+|MoraSa|https://www.mora-sa.com/|Yes|Yes|[Click](docs/drivers_configuration.md#morasa)
 
 
 ## Available SMS Drivers local development
