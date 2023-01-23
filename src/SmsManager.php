@@ -26,7 +26,7 @@ class SmsManager
      * The array of supported drivers.
      * @var array
      */
-    protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio"];
+    protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio", "morasa"];
 
     /**
      * Create a new Sms manager instance.

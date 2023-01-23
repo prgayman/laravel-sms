@@ -24,7 +24,7 @@ class JawalSmsClient
      * Api Base Url
      * @var string
      */
-    protected $baseUrl = 'https://www.jawalsms.net/';
+    protected $baseUrl = 'https://www.jawalsms.net';
 
     /**
      * Message unicode

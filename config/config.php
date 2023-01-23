@@ -63,6 +63,13 @@ return [
             'options' => []
         ],
 
+        "morasa" => [
+            "driver" => "morasa",
+            'username' => env('SMS_MORASA_USERNAME'),
+            'api_key' => env('SMS_MORASA_API_KEY'),
+            'sender'   => env('SMS_MORASA_SENDER_NAME'),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),

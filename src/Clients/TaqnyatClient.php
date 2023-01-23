@@ -17,7 +17,7 @@ class TaqnyatClient
      * Api Base Url
      * @var string
      */
-    protected $baseUrl = 'https://api.taqnyat.sa/';
+    protected $baseUrl = 'https://api.taqnyat.sa';
 
 
     public function __construct(string $authorization)

@@ -6,6 +6,7 @@ use Prgayman\Sms\Drivers\LogDriver;
 use Illuminate\Log\LogManager;
 use Prgayman\Sms\Drivers\ArrayDriver;
 use Prgayman\Sms\Drivers\JawalSmsDriver;
+use Prgayman\Sms\Drivers\MoraSaDriver;
 use Prgayman\Sms\Drivers\NexmoDriver;
 use Prgayman\Sms\Drivers\TaqnyatDriver;
 use Prgayman\Sms\Drivers\TwilioDriver;
@@ -87,6 +88,19 @@ trait CreateDriver
             $config["token"],
             $config["sender"] ?? null,
             $config["options"] ?? [],
+        );
+    }
+
+    /**
+     * Create an instance of the MoraSaDriver Driver.
+     * @return \Prgayman\Sms\Drivers\MoraSaDriver
+     */
+    protected function createMoraSaDriver(array $config)
+    {
+        return new MoraSaDriver(
+            $config["username"],
+            $config["api_key"],
+            $config["sender"] ?? null,
         );
     }
 }
