@@ -32,7 +32,7 @@ class TaqnyatClient
      * @param string $sender
      * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function send(string $message, string $sender, array|string $recipients): SmsDriverResponse
+    public function send(string $message, string $sender, $recipients): SmsDriverResponse
     {
         $request = [
             'recipients' => is_array($recipients) ? $recipients : [$recipients],

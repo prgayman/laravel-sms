@@ -45,7 +45,7 @@ class JawalSmsClient
      * @param array|string $mobile
      * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function send(string $message, string $sender, array|string $mobile): SmsDriverResponse
+    public function send(string $message, string $sender, $mobile): SmsDriverResponse
     {
         $mobile = is_array($mobile)
             ? implode(",", array_map(function ($to) {

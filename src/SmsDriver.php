@@ -59,7 +59,7 @@ class SmsDriver implements DriverInterface
      * @param array|string $to
      * @return $this
      */
-    public function to(array|string $to): SmsDriver
+    public function to($to): SmsDriver
     {
         $to = is_array($to) && count($to) == 1 ? $to[0] : $to;
 
@@ -81,10 +81,10 @@ class SmsDriver implements DriverInterface
 
     /**
      * Set from (sender name)
-     * @param string|null $senderName
+     * @param string $senderName
      * @return $this
      */
-    public function from(string|null $senderName): SmsDriver
+    public function from(string $senderName): SmsDriver
     {
         $this->driver->from($senderName);
         return $this;
@@ -114,7 +114,7 @@ class SmsDriver implements DriverInterface
      * Get to
      * @return array|string|null
      */
-    public function getTo(): array|string|null
+    public function getTo()
     {
         return $this->driver->getTo();
     }
@@ -123,7 +123,7 @@ class SmsDriver implements DriverInterface
      * Get from (sender name)
      * @return string|null
      */
-    public function getFrom(): string|null
+    public function getFrom(): ?string
     {
         return $this->driver->getFrom();
     }
@@ -141,7 +141,7 @@ class SmsDriver implements DriverInterface
      * Get message content
      * @return string|null
      */
-    public function getMessage(): string|null
+    public function getMessage(): ?string
     {
         return $this->driver->getMessage();
     }

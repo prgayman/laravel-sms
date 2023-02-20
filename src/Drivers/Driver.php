@@ -42,13 +42,13 @@ abstract class Driver implements DriverInterface
      */
     protected $type = \Prgayman\Sms\SmsTypes::GENERAL;
 
-    public function to(array|string $to)
+    public function to($to)
     {
         $this->to = $to;
         return $this;
     }
 
-    public function from(string|null $senderName)
+    public function from(?string $senderName = null)
     {
         $this->from = $senderName;
         return $this;
@@ -77,7 +77,7 @@ abstract class Driver implements DriverInterface
         return $this->type;
     }
 
-    public function getTo(): array|string|null
+    public function getTo()
     {
         return $this->to;
     }
@@ -87,12 +87,12 @@ abstract class Driver implements DriverInterface
         return $this->options;
     }
 
-    public function getFrom(): string|null
+    public function getFrom(): ?string
     {
         return is_null($this->from) && !is_null($this->senderName) ? $this->senderName : $this->from;
     }
 
-    public function getMessage(): string|null
+    public function getMessage(): ?string
     {
         return $this->text;
     }

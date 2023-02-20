@@ -9,10 +9,10 @@ interface DriverInterface
     /**
      * Set mobile number's
      *
-     * @param array|string $to
+     * @param string|array $to
      * @return $this
      */
-    public function to(array|string $to);
+    public function to($to);
 
     /**
      * Set sender Name
@@ -20,7 +20,7 @@ interface DriverInterface
      * @param string $senderName
      * @return $this
      */
-    public function from(string|null $senderName);
+    public function from(string $senderName);
 
     /**
      * Set text message
@@ -49,23 +49,23 @@ interface DriverInterface
     /**
      * Get to
      *
-     * @return array|string|null
+     * @return string|array
      */
-    public function getTo(): array|string|null;
+    public function getTo();
 
     /**
      * Get sender name
      *
      * @return string|null
      */
-    public function getFrom(): string|null;
+    public function getFrom(): ?string;
 
     /**
      * Get text message
      *
      * @return string|null
      */
-    public function getMessage(): string|null;
+    public function getMessage(): ?string;
 
     /**
      * Get type
