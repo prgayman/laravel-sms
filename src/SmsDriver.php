@@ -81,10 +81,10 @@ class SmsDriver implements DriverInterface
 
     /**
      * Set from (sender name)
-     * @param string $senderName
+     * @param string|null $senderName
      * @return $this
      */
-    public function from(string $senderName): SmsDriver
+    public function from(?string $senderName = null): SmsDriver
     {
         $this->driver->from($senderName);
         return $this;

@@ -17,10 +17,10 @@ interface DriverInterface
     /**
      * Set sender Name
      *
-     * @param string $senderName
+     * @param string|null $senderName
      * @return $this
      */
-    public function from(string $senderName);
+    public function from(?string $senderName = null);
 
     /**
      * Set text message

@@ -50,10 +50,10 @@ class SmsNotification
 
     /**
      * Set from (sender name)
-     * @param string $senderName
+     * @param string|null $senderName
      * @return $this
      */
-    public function from(string $senderName): self
+    public function from(?string $senderName = null): self
     {
         $this->driver->from($senderName);
         return $this;
