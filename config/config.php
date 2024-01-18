@@ -70,6 +70,13 @@ return [
             'sender'   => env('SMS_MORASA_SENDER_NAME'),
         ],
 
+        "msegat" => [
+            "driver" => "msegat",
+            'username' => env('SMS_MSEGAT_USERNAME'),
+            'api_key' => env('SMS_MSEGAT_API_KEY'),
+            'sender'   => env('SMS_MSEGAT_SENDER_NAME'),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),

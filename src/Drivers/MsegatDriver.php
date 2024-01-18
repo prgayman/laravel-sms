@@ -2,11 +2,11 @@
 
 namespace Prgayman\Sms\Drivers;
 
-use Prgayman\Sms\Clients\MoraSaClient;
+use Prgayman\Sms\Clients\MsegatClient;
 use Prgayman\Sms\Contracts\DriverMultipleContactsInterface;
 use Prgayman\Sms\SmsDriverResponse;
 
-class MoraSaDriver extends Driver implements DriverMultipleContactsInterface {
+class MsegatDriver extends Driver implements DriverMultipleContactsInterface {
     /**
      * Username
      * @var string
@@ -31,7 +31,7 @@ class MoraSaDriver extends Driver implements DriverMultipleContactsInterface {
     }
 
     public function client() {
-        return new MoraSaClient($this->username, $this->apiKey);
+        return new MsegatClient($this->username, $this->apiKey);
     }
 
     public function send(): SmsDriverResponse {

@@ -6,8 +6,7 @@ use InvalidArgumentException;
 use Prgayman\Sms\Contracts\DriverInterface;
 use Prgayman\Sms\Traits\CreateDriver;
 
-class SmsManager
-{
+class SmsManager {
     use CreateDriver;
 
     /**
@@ -26,15 +25,14 @@ class SmsManager
      * The array of supported drivers.
      * @var array
      */
-    protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio", "morasa"];
+    protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio", "msegat", "morasa"];
 
     /**
      * Create a new Sms manager instance.
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void
      */
-    public function __construct($app)
-    {
+    public function __construct($app) {
         $this->app = $app;
     }
 
@@ -43,8 +41,7 @@ class SmsManager
      * @param string|null  $name
      * @return \Prgayman\Sms\SmsDriver
      */
-    public function driver($name = null): SmsDriver
-    {
+    public function driver($name = null): SmsDriver {
         $name = $name ?: $this->getDefaultDriver();
 
         return $this->drivers[$name] = $this->get($name);
@@ -55,8 +52,7 @@ class SmsManager
      * @param  string  $name
      * @return \Prgayman\Sms\SmsDriver
      */
-    protected function get($name): SmsDriver
-    {
+    protected function get($name): SmsDriver {
         return $this->drivers[$name] ?? $this->resolve($name);
     }
 
@@ -66,8 +62,7 @@ class SmsManager
      * @return \Prgayman\Sms\SmsDriver
      * @throws \InvalidArgumentException
      */
-    protected function resolve($name): SmsDriver
-    {
+    protected function resolve($name): SmsDriver {
         $config = $this->configurationFor($name);
 
         if (is_null($config)) {
@@ -95,8 +90,7 @@ class SmsManager
     /**
      * @return array
      */
-    public function getDrivers()
-    {
+    public function getDrivers() {
         return $this->drivers;
     }
 
@@ -105,8 +99,7 @@ class SmsManager
      * @param  string  $name
      * @return array
      */
-    protected function configurationFor($name)
-    {
+    protected function configurationFor($name) {
         return SmsConfig::config("drivers.{$name}");
     }
 
@@ -114,8 +107,7 @@ class SmsManager
      * Get the default sms driver name.
      * @return string|null
      */
-    public function getDefaultDriver()
-    {
+    public function getDefaultDriver() {
         return SmsConfig::config("default");
     }
 
@@ -124,8 +116,7 @@ class SmsManager
      * @param string $name
      * @return void
      */
-    public function setDefaultDriver($name)
-    {
+    public function setDefaultDriver($name) {
         SmsConfig::set("default", $name);
     }
 
@@ -133,8 +124,7 @@ class SmsManager
      * Get the application instance used by the manager.
      * @return \Illuminate\Contracts\Foundation\Application
      */
-    public function getApplication()
-    {
+    public function getApplication() {
         return $this->app;
     }
 
@@ -143,8 +133,7 @@ class SmsManager
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return $this
      */
-    public function setApplication($app)
-    {
+    public function setApplication($app) {
         $this->app = $app;
 
         return $this;
@@ -156,8 +145,7 @@ class SmsManager
      * @param  array  $parameters
      * @return mixed
      */
-    public function __call($method, $parameters)
-    {
+    public function __call($method, $parameters) {
         return $this->driver()->$method(...$parameters);
     }
 }

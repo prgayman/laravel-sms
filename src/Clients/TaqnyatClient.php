@@ -5,8 +5,7 @@ namespace Prgayman\Sms\Clients;
 use Illuminate\Support\Facades\Http;
 use Prgayman\Sms\SmsDriverResponse;
 
-class TaqnyatClient
-{
+class TaqnyatClient {
     /**
      * Authorization bearer token
      * @var string
@@ -20,8 +19,7 @@ class TaqnyatClient
     protected $baseUrl = 'https://api.taqnyat.sa';
 
 
-    public function __construct(string $authorization)
-    {
+    public function __construct(string $authorization) {
         $this->authorization = $authorization;
     }
 
@@ -32,8 +30,7 @@ class TaqnyatClient
      * @param string $sender
      * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function send(string $message, string $sender, $recipients): SmsDriverResponse
-    {
+    public function send(string $message, string $sender, $recipients): SmsDriverResponse {
         $request = [
             'recipients' => is_array($recipients) ? $recipients : [$recipients],
             'sender' => $sender,

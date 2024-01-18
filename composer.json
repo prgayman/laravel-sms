@@ -1,71 +1,72 @@
 {
-  "name": "prgayman/laravel-sms",
-  "description": "Laravel package for sending SMS",
-  "keywords": [
-    "prgayman",
-    "laravel",
-    "sms",
-    "nexmo",
-    "taqnyat",
-    "jawalsms",
-    "twilio",
-    "morasa"
-  ],
-  "homepage": "https://github.com/prgayman/laravel-sms",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Ayman Alaiwah",
-      "email": "aymanalaiwah.dev@gmail.com",
-      "homepage": "https://github.com/prgayman/",
-      "role": "Developer"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/prgayman/laravel-sms/issues",
-    "source": "https://github.com/prgayman/laravel-sms"
-  },
-  "require": {
-    "php": "^7.3|^8.0",
-    "guzzlehttp/guzzle": "^7.0.1"
-  },
-  "autoload": {
-    "psr-4": {
-      "Prgayman\\Sms\\": "src"
+    "name": "prgayman/laravel-sms",
+    "description": "Laravel package for sending SMS",
+    "keywords": [
+        "prgayman",
+        "laravel",
+        "sms",
+        "nexmo",
+        "taqnyat",
+        "jawalsms",
+        "twilio",
+        "morasa",
+        "msegat"
+    ],
+    "homepage": "https://github.com/prgayman/laravel-sms",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ayman Alaiwah",
+            "email": "aymanalaiwah.dev@gmail.com",
+            "homepage": "https://github.com/prgayman/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/prgayman/laravel-sms/issues",
+        "source": "https://github.com/prgayman/laravel-sms"
     },
-    "files": [
-      "src/helpers.php"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Prgayman\\Sms\\Test\\": "tests/"
-    }
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^9.0",
-    "orchestra/testbench": "^6.24",
-    "nunomaduro/collision": "^5.10",
-    "twilio/sdk": "^6.33"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Prgayman\\Sms\\SmsServiceProvider"
-      ],
-      "aliases": {
-        "Sms": "Prgayman\\Sms\\Facades\\Sms",
-        "SmsHistory": "Prgayman\\Sms\\Facades\\SmsHistory"
-      }
-    }
-  },
-  "scripts": {
-    "test": "phpunit",
-    "post-autoload-dump": [
-      "@php ./vendor/bin/testbench package:discover --ansi"
-    ]
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "require": {
+        "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Prgayman\\Sms\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Prgayman\\Sms\\Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "orchestra/testbench": "^6.24",
+        "nunomaduro/collision": "^5.10",
+        "twilio/sdk": "^6.33"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Prgayman\\Sms\\SmsServiceProvider"
+            ],
+            "aliases": {
+                "Sms": "Prgayman\\Sms\\Facades\\Sms",
+                "SmsHistory": "Prgayman\\Sms\\Facades\\SmsHistory"
+            }
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

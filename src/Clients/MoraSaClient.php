@@ -5,8 +5,7 @@ namespace Prgayman\Sms\Clients;
 use Illuminate\Support\Facades\Http;
 use Prgayman\Sms\SmsDriverResponse;
 
-class MoraSa
-{
+class MoraSaClient {
     /**
      * Username
      * @var string
@@ -25,8 +24,7 @@ class MoraSa
      */
     protected $baseUrl = 'http://mora-sa.com/api/v1';
 
-    public function __construct(string $username, string $apiKey)
-    {
+    public function __construct(string $username, string $apiKey) {
         $this->username = $username;
         $this->apiKey = $apiKey;
     }
@@ -38,8 +36,7 @@ class MoraSa
      * @param array|string $mobile
      * @return \Prgayman\Sms\SmsDriverResponse
      */
-    public function send(string $message, string $sender, $mobile): SmsDriverResponse
-    {
+    public function send(string $message, string $sender, $mobile): SmsDriverResponse {
         $mobile = is_array($mobile)
             ? implode(",", array_map(function ($to) {
                 return str_replace('+', '', $to);
