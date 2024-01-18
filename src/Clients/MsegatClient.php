@@ -25,7 +25,7 @@ class MsegatClient {
      * 
      * @var string
      */
-    protected $baseUrl = 'https://www.msegat.com';
+    protected $baseUrl = 'https://www.msegat.com/gw';
 
     public function __construct(string $username, string $apiKey) {
         $this->username = $username;
@@ -52,7 +52,7 @@ class MsegatClient {
             "msg"          => $message
         ];
 
-        $response = Http::post("{$this->baseUrl}/gw/sendsms.php", $request);
+        $response = Http::post("{$this->baseUrl}/sendsms.php", $request);
 
         return new SmsDriverResponse(
             $request,
