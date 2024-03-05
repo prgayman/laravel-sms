@@ -77,6 +77,12 @@ return [
             'sender'   => env('SMS_MSEGAT_SENDER_NAME'),
         ],
 
+        "kobikom" => [
+            "driver" => "kobikom",
+            'api_key' => env('SMS_KOBIKOM_API_KEY'),
+            'sender'   => env('SMS_KOBIKOM_SENDER_NAME'),
+        ],
+
         "log" => [
             "driver" => "log",
             'channel' => env('SMS_LOG_CHANNEL'),

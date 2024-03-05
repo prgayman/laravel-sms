@@ -83,6 +83,7 @@ You can publish the config file with this artisan command:
 | Twilio   |  https://www.twilio.com/  |  Yes   |        No         |  [Click](docs/drivers_configuration.md#twilio)  |
 | MoraSa   | https://www.mora-sa.com/  |  Yes   |        Yes        |  [Click](docs/drivers_configuration.md#morasa)  |
 | Msegat   |  https://www.msegat.com/  |  Yes   |        Yes        |  [Click](docs/drivers_configuration.md#msegat)  |
+| Kobikom  |  https://kobikom.com.tr/  |  Yes   |        Yes        | [Click](docs/drivers_configuration.md#kobikom)  |
 
 ## Available SMS Drivers local development
 
@@ -432,3 +433,4 @@ composer test
 ## Licence
 
 This library is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+

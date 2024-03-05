@@ -10,7 +10,8 @@
         "jawalsms",
         "twilio",
         "morasa",
-        "msegat"
+        "msegat",
+        "kobikom"
     ],
     "homepage": "https://github.com/prgayman/laravel-sms",
     "type": "library",
@@ -70,3 +71,4 @@
     "minimum-stability": "dev",
     "prefer-stable": true
 }
+
