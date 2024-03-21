@@ -84,7 +84,7 @@ You can publish the config file with this artisan command:
 | MoraSa   | https://www.mora-sa.com/  |  Yes   |        Yes        |  [Click](docs/drivers_configuration.md#morasa)  |
 | Msegat   |  https://www.msegat.com/  |  Yes   |        Yes        |  [Click](docs/drivers_configuration.md#msegat)  |
 | Kobikom  |  https://kobikom.com.tr/  |  Yes   |        Yes        | [Click](docs/drivers_configuration.md#kobikom)  |
-| Unifonic  |   https://unifonic.com/   |   NO   |        Yes        | [Click](docs/drivers_configuration.md#unifonic) |
+| Unifonic  |   https://unifonic.com/   |   No   |        Yes        | [Click](docs/drivers_configuration.md#unifonic) |
 
 
 ## Available SMS Drivers local development
