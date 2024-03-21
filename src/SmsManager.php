@@ -16,7 +16,7 @@ class SmsManager
      */
     protected $app;
 
-    /** 
+    /**
      * The array of resolved drivers.
      * @var array
      */
@@ -26,11 +26,11 @@ class SmsManager
      * The array of supported drivers.
      * @var array
      */
-    protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio", "msegat", "morasa", "kobikom"];
+    protected $supportedDrivers = ["log", "array", "jawal_sms", "taqnyat", "nexmo", "twilio", "msegat", "morasa", "unifonic", "kobikom"];
 
     /**
      * Create a new Sms manager instance.
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
      * @return void
      */
     public function __construct($app)
@@ -40,7 +40,7 @@ class SmsManager
 
     /**
      * Get a Driver instance by name.
-     * @param string|null  $name
+     * @param string|null $name
      * @return \Prgayman\Sms\SmsDriver
      */
     public function driver($name = null): SmsDriver
@@ -52,7 +52,7 @@ class SmsManager
 
     /**
      * Attempt to get the driver from the local cache.
-     * @param  string  $name
+     * @param string $name
      * @return \Prgayman\Sms\SmsDriver
      */
     protected function get($name): SmsDriver
@@ -102,7 +102,7 @@ class SmsManager
 
     /**
      * Get the sms connection configuration.
-     * @param  string  $name
+     * @param string $name
      * @return array
      */
     protected function configurationFor($name)
@@ -140,7 +140,7 @@ class SmsManager
 
     /**
      * Set the application instance used by the manager.
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
      * @return $this
      */
     public function setApplication($app)
@@ -152,8 +152,8 @@ class SmsManager
 
     /**
      * Dynamically call the default driver instance.
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array $parameters
      * @return mixed
      */
     public function __call($method, $parameters)

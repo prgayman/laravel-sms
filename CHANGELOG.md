@@ -2,6 +2,10 @@
 
 All notable changes to `prgayman/laravel-sms` will be documented in this file
 
+## 1.6.2 - 2024-03-21
+
+-   Add Unifonic Driver
+
 ## 1.6.1 - 2024-03-05
 
 -   Add Kobikom Driver

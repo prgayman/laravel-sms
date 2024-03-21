@@ -76,7 +76,7 @@ You can publish the config file with this artisan command:
 ## Available SMS Providers
 
 | Provider |            URL            | Tested | Multiple contacts |                     Config                      |
-| :------- | :-----------------------: | :----: | :---------------: | :---------------------------------------------: |
+| :------- |:-------------------------:| :----: | :---------------: |:-----------------------------------------------:|
 | JawalSms | https://www.jawalsms.net/ |  Yes   |        Yes        | [Click](docs/drivers_configuration.md#jawalsms) |
 | Taqnyat  |  https://www.taqnyat.sa/  |  Yes   |        Yes        | [Click](docs/drivers_configuration.md#taqnyat)  |
 | Nexmo    |  https://www.nexmo.com/   |  Yes   |        No         |  [Click](docs/drivers_configuration.md#nexmo)   |
@@ -84,6 +84,8 @@ You can publish the config file with this artisan command:
 | MoraSa   | https://www.mora-sa.com/  |  Yes   |        Yes        |  [Click](docs/drivers_configuration.md#morasa)  |
 | Msegat   |  https://www.msegat.com/  |  Yes   |        Yes        |  [Click](docs/drivers_configuration.md#msegat)  |
 | Kobikom  |  https://kobikom.com.tr/  |  Yes   |        Yes        | [Click](docs/drivers_configuration.md#kobikom)  |
+| Unifonic  |   https://unifonic.com/   |  Yes   |        Yes        | [Click](docs/drivers_configuration.md#unifonic) |
+
 
 ## Available SMS Drivers local development
 

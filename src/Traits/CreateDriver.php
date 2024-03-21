@@ -12,6 +12,7 @@ use Prgayman\Sms\Drivers\MsegatDriver;
 use Prgayman\Sms\Drivers\NexmoDriver;
 use Prgayman\Sms\Drivers\TaqnyatDriver;
 use Prgayman\Sms\Drivers\TwilioDriver;
+use Prgayman\Sms\Drivers\UnifonicDriver;
 use Psr\Log\LoggerInterface;
 
 trait CreateDriver
@@ -130,4 +131,19 @@ trait CreateDriver
             $config["sender"] ?? null,
         );
     }
+
+    /**
+     * Create an instance of the UnifonicDriver Driver.
+     *
+     * @return \Prgayman\Sms\Drivers\UnifonicDriver
+     */
+    protected function createUnifonicDriver(array $config)
+    {
+        return new UnifonicDriver(
+            $config["sid"],
+            $config["sender"] ?? null,
+            $config["message_type"],
+        );
+    }
 }
+

@@ -88,3 +88,11 @@ Or you can add it directly in your composer.json file:
 | SMS_KOBIKOM_API_KEY     | Yes       | null    | Account Api Key                                                        |
 | SMS_KOBIKOM_SENDER_NAME | No        | null    | Sender Name (optional) you can set sender name using function `from()` |
 
+
+## Unifonic
+
+| Key                       | Mandatory | Default | Description                                                        |
+|:--------------------------| :-------- |:--------|:-------------------------------------------------------------------|
+| SMS_UNIFONIC_APP_SID      | Yes       | null    | Application SID                                                    |
+| SMS_UNIFONIC_SENDER_ID    | No        | null    | Sender ID (optional) you can set sender ID using function `from()` |
+| SMS_UNIFONIC_MESSAGE_TYPE | No        | 3       | Message Type                                                       |

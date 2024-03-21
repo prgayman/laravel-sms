@@ -15,7 +15,6 @@ class SmsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         # publishes config file with group (laravel-sms-config)
         $this->publishes([
             __DIR__ . '/../config/config.php' => config_path('sms.php'),

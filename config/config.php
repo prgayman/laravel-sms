@@ -36,7 +36,7 @@ return [
             "driver" => "jawal_sms",
             'username' => env('SMS_JAWAL_SMS_USERNAME'),
             'password' => env('SMS_JAWAL_SMS_PASSWORD'),
-            'sender'   => env('SMS_JAWAL_SMS_SENDER_NAME'),
+            'sender' => env('SMS_JAWAL_SMS_SENDER_NAME'),
             'options' => []
         ],
 
@@ -67,20 +67,27 @@ return [
             "driver" => "morasa",
             'username' => env('SMS_MORASA_USERNAME'),
             'api_key' => env('SMS_MORASA_API_KEY'),
-            'sender'   => env('SMS_MORASA_SENDER_NAME'),
+            'sender' => env('SMS_MORASA_SENDER_NAME'),
         ],
 
         "msegat" => [
             "driver" => "msegat",
             'username' => env('SMS_MSEGAT_USERNAME'),
             'api_key' => env('SMS_MSEGAT_API_KEY'),
-            'sender'   => env('SMS_MSEGAT_SENDER_NAME'),
+            'sender' => env('SMS_MSEGAT_SENDER_NAME'),
         ],
 
         "kobikom" => [
             "driver" => "kobikom",
             'api_key' => env('SMS_KOBIKOM_API_KEY'),
-            'sender'   => env('SMS_KOBIKOM_SENDER_NAME'),
+            'sender' => env('SMS_KOBIKOM_SENDER_NAME'),
+        ],
+
+        "unifonic" => [
+            "driver" => "unifonic",
+            'sid' => env('SMS_UNIFONIC_APP_SID'),
+            "sender" => env('SMS_UNIFONIC_SENDER_ID'),
+            'message_type' => env('SMS_UNIFONIC_MESSAGE_TYPE', 3),
         ],
 
         "log" => [
@@ -99,9 +106,9 @@ return [
      * Package system events.
      */
     'events' => [
-        'message_failed'  =>  \Prgayman\Sms\Events\MessageFailed::class,
+        'message_failed' => \Prgayman\Sms\Events\MessageFailed::class,
         'message_sending' => \Prgayman\Sms\Events\MessageSending::class,
-        'message_sent'    => \Prgayman\Sms\Events\MessageSent::class,
+        'message_sent' => \Prgayman\Sms\Events\MessageSent::class,
     ],
 
     /**
