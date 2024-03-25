@@ -47,8 +47,8 @@ class UnifonicClient
             'AppSid' => $this->appSid,
             'SenderID' => $sender,
             'Body' => $message,
-            'Recipient' => str_replace('+', "00", $recipient),
-            'baseEncode' => false,
+            'Recipient' => preg_replace('/^\+|^00/', '', $recipient),
+            'baseEncode' => true,
             "MessageType" => $this->messageType,
             "statusCallback" => "sent"
         ];
