@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string|null getDefaultDriver()
  * @method static void setDefaultDriver(string $name)
  * @method static \Prgayman\Sms\SmsDriver driver(string|null $name = null)
+ * @method static \Prgayman\Sms\SmsDriver type(string $name)
  * @method static \Prgayman\Sms\SmsDriver to(array|string $mobile)
  * @method static \Prgayman\Sms\SmsDriver from(?string $senderName = null)
  * @method static \Prgayman\Sms\SmsDriver message(string $text)
