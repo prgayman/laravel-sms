@@ -11,7 +11,8 @@
         "twilio",
         "morasa",
         "msegat",
-        "kobikom"
+        "kobikom",
+        "jormall"
     ],
     "homepage": "https://github.com/prgayman/laravel-sms",
     "type": "library",

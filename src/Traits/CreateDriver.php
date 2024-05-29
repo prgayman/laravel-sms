@@ -2,6 +2,7 @@
 
 namespace Prgayman\Sms\Traits;
 
+use Prgayman\Sms\Drivers\JorMallDriver;
 use Prgayman\Sms\Drivers\LogDriver;
 use Illuminate\Log\LogManager;
 use Prgayman\Sms\Drivers\ArrayDriver;
@@ -143,6 +144,21 @@ trait CreateDriver
             $config["sid"],
             $config["sender"] ?? null,
             $config["message_type"],
+        );
+    }
+
+    /**
+     * Create an instance of the UnifonicDriver Driver.
+     *
+     * @param array $config
+     * @return JorMallDriver
+     */
+    protected function createJorMallDriver(array $config)
+    {
+        return new JorMallDriver(
+            $config["acc_name"],
+            $config["password"],
+            $config["sender_id"] ?? null,
         );
     }
 }

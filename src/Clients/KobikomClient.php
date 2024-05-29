@@ -2,6 +2,7 @@
 
 namespace Prgayman\Sms\Clients;
 
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Prgayman\Sms\SmsDriverResponse;
 
@@ -11,13 +12,13 @@ class KobikomClient
      * Api Key
      * @var string
      */
-    protected $apiKey;
+    protected string $apiKey;
 
     /**
      * Api Base Url
      * @var string
      */
-    protected $baseUrl = 'https://smspaneli.kobikom.com.tr/sms/api';
+    protected string $baseUrl = 'https://smspaneli.kobikom.com.tr/sms/api';
 
     public function __construct(string $apiKey)
     {
@@ -26,13 +27,13 @@ class KobikomClient
 
     /**
      * Send single sms
-     * 
+     *
      * @param string $sender
      * @param string $message
      * @param string $mobile
-     * @return \Prgayman\Sms\SmsDriverResponse
+     * @return SmsDriverResponse
      */
-    private function snedSingle(string $message, string $sender, string $mobile): SmsDriverResponse
+    private function sendSingle(string $message, string $sender, string $mobile): SmsDriverResponse
     {
         $request = [
             "action" => "send-sms",
@@ -55,16 +56,17 @@ class KobikomClient
 
     /**
      * Send Multiple sms
-     * 
-     * @param string $sender
+     *
      * @param string $message
-     * @param array $mobile
-     * @return \Prgayman\Sms\SmsDriverResponse
+     * @param string $sender
+     * @param array $mobiles
+     * @return SmsDriverResponse
+     * @throws ConnectionException
      */
-    private function snedMultiple(string $message, string $sender, array $mobiles): SmsDriverResponse
+    private function sendMultiple(string $message, string $sender, array $mobiles): SmsDriverResponse
     {
         $request = [
-            "body" => array_map(fn ($mobile) => [
+            "body" => array_map(fn($mobile) => [
                 "from" => $sender,
                 "to" => str_replace('+', '', $mobile),
                 "sms" => $message,
@@ -85,13 +87,13 @@ class KobikomClient
 
     /**
      * Send single and multiple sms
-     * @param string $sender
      * @param string $message
+     * @param string|array $sender
      * @param array|string $mobile
-     * @return \Prgayman\Sms\SmsDriverResponse
+     * @return SmsDriverResponse
      */
-    public function send(string $message, string|array $sender, $mobile): SmsDriverResponse
+    public function send(string $message, string|array $sender, array|string $mobile): SmsDriverResponse
     {
-        return $this->{is_array($mobile) ? "snedMultiple" : "snedSingle"}($message, $sender, $mobile);
+        return $this->{is_array($mobile) ? "sendMultiple" : "sendSingle"}($message, $sender, $mobile);
     }
 }

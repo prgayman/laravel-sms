@@ -60,8 +60,8 @@ class UnifonicClient
             $request,
             $response->json(),
             $response->successful()
-            && $response->json('success') == true
-            && $response->json('errorCode') == "ER-00",
+                && $response->json('success') == true
+                && $response->json('errorCode') == "ER-00",
             $response->json('message')
         );
     }

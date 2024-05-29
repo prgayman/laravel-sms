@@ -27,7 +27,7 @@ return [
     | sending an sms. You will specify which one you are using for your
     | drivers below. You are free to add additional drivers as required.
     |
-    | Supported: log,array,jawal_sms,taqnyat,nexmo,twilio
+    | Supported: log,array,jawal_sms,taqnyat,nexmo,twilio,morasa,msegat,kobikom,unifonic,jor_mall
     |
     */
     "drivers" => [
@@ -88,6 +88,14 @@ return [
             'sid' => env('SMS_UNIFONIC_APP_SID'),
             "sender" => env('SMS_UNIFONIC_SENDER_ID'),
             'message_type' => env('SMS_UNIFONIC_MESSAGE_TYPE', 3),
+        ],
+
+        "jor_mall" => [
+            "driver" => "jor_mall",
+            "acc_name" => env('SMS_JOR_MALL_ACC_NAME'),
+            "password" => env('SMS_JOR_MALL_PASSWORD'),
+            "sender_id" => env('SMS_JOR_MALL_SENDER_ID'),
+            'options' => []
         ],
 
         "log" => [
