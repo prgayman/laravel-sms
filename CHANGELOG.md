@@ -2,7 +2,7 @@
 
 All notable changes to `prgayman/laravel-sms` will be documented in this file
 
-## 1.6.3 - 2024-05-29
+## 1.6.4 - 2024-05-29
 
 - Add JorMall Driver
 
